@@ -5,7 +5,7 @@
 - Data collection from PDB
 - Initial structure processing
 
-### Phase 2 
+### Phase 2  (Almost Done)
 
 - Enhance data categorization
 - Add more advanced property calculations
