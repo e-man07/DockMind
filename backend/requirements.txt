@@ -1,0 +1,46 @@
+
+# API dependencies
+fastapi==0.104.1
+uvicorn==0.23.2
+asyncpg==0.29.0
+pydantic==2.4.2
+python-multipart==0.0.6
+
+# Visualization and reporting
+reportlab==4.0.7
+
+# AI and ML
+google-generativeai==0.3.1
+
+# Data processing
+numpy==1.24.4
+pandas==2.0.3
+biopandas==0.4.1
+
+# Configuration
+python-dotenv==1.0.0
+
+# Blockchain
+solana==0.30.2
+solders==0.18.1
+
+# Molecular analysis
+mdanalysis==2.6.1
+biopython==1.81
+rdkit==2023.3.2
+
+# Networking
+aiohttp==3.8.6
+requests==2.31.0
+
+# Database
+sqlalchemy==2.0.23
+alembic==1.12.1
+
+# Utilities
+loguru==0.7.2
+tqdm==4.66.1
+
+# Testing
+pytest==7.4.3
+pytest-cov==4.1.0

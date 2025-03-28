@@ -1,0 +1,430 @@
+{
+  "1US0": {
+    "title": "Human Aldose Reductase in complex with NADP+ and the inhibitor IDD594 at 0.66 Angstrom",
+    "resolution": 0.66,
+    "r_factor": 0.0936,
+    "r_free": 0.1032,
+    "experimental_method": "X-RAY DIFFRACTION",
+    "temperature": 100.0,
+    "publication": {
+      "doi": "10.1002/PROT.20015",
+      "pubmed_id": 15146478,
+      "title": "Ultrahigh Resolution Drug Design I: Details of Interactions in Human Aldose Reductase-Inhibitor Complex at 0.66 A.",
+      "year": 2004
+    },
+    "related_structures": [
+      {
+        "pdb_id": "1ABN",
+        "details": "ALDOSE REDUCTASE MUTANT WITH CYS 298 REPLACED BY SER (C298S) COMPLEX WITH NADPH"
+      },
+      {
+        "pdb_id": "1ADS",
+        "details": "ALDOSE REDUCTASE COMPLEX WITH NADPH"
+      },
+      {
+        "pdb_id": "1AZ1",
+        "details": "ALRESTATIN BOUND TO C298A/W219Y MUTANT HUMAN ALDOSE REDUCTASE"
+      },
+      {
+        "pdb_id": "1AZ2",
+        "details": "CITRATE BOUND, C298A/W219Y MUTANT HUMAN ALDOSE REDUCTASE"
+      },
+      {
+        "pdb_id": "1EF3",
+        "details": "FIDARESTAT BOUND TO HUMAN ALDOSE REDUCTASE"
+      },
+      {
+        "pdb_id": "1EL3",
+        "details": "HUMAN ALDOSE REDUCTASE COMPLEXED WITH IDD384 INHIBITOR"
+      },
+      {
+        "pdb_id": "1IEI",
+        "details": "CRYSTAL STRUCTURE OF HUMAN ALDOSE REDUCTASE COMPLEXED WITHTHE INHIBITOR ZENARESTAT."
+      },
+      {
+        "pdb_id": "1MAR",
+        "details": "ALDOSE REDUCTASE"
+      },
+      {
+        "pdb_id": "2ACQ",
+        "details": "ALDOSE REDUCTASE WILD TYPE COMPLEXED WITH NADP+ AND GLUCOSE-6-PHOSPHATE"
+      },
+      {
+        "pdb_id": "2ACR",
+        "details": "ALDOSE REDUCTASE WILD TYPE COMPLEXED WITH NADP+ AND CACODYLATE"
+      },
+      {
+        "pdb_id": "2ACS",
+        "details": "ALDOSE REDUCTASE WILD TYPE COMPLEXED WITH NADP+ AND CITRATE"
+      },
+      {
+        "pdb_id": "2ACU",
+        "details": "ALDOSE REDUCTASE MUTANT WITH TYR 48 REPLACED BY HIS (Y48H) COMPLEXED WITH NADP+ AND CITRATE"
+      }
+    ],
+    "keywords": [
+      "OXIDOREDUCTASE"
+    ],
+    "binding_data": [
+      {
+        "comp_id": "LDT",
+        "type": "-T&Delta;S",
+        "value": -14.691399574279785,
+        "unit": "kJ/mol",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=1US0"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "&Delta;G",
+        "value": -40.900001525878906,
+        "unit": "kJ/mol",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=1US0"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "&Delta;G",
+        "value": -31.5,
+        "unit": "kJ/mol",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=1US0"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "IC50",
+        "value": 30.0,
+        "unit": "nM",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=1US0"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "&Delta;G",
+        "value": -31.299999237060547,
+        "unit": "kJ/mol",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=1US0"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "-T&Delta;S",
+        "value": 7.986400127410889,
+        "unit": "kJ/mol",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=1US0"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "IC50",
+        "value": 3.0,
+        "unit": "nM",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=1US0"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "-T&Delta;S",
+        "value": -22.58839988708496,
+        "unit": "kJ/mol",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=1US0"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "&Delta;G",
+        "value": -38.70000076293945,
+        "unit": "kJ/mol",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=1US0"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "&Delta;H",
+        "value": -46.20000076293945,
+        "unit": "kJ/mol",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=1US0"
+      }
+    ]
+  },
+  "4LBS": {
+    "title": "Crystal structure of human AR complexed with NADP+ and {2-[(4-bromo-2,6-difluorobenzyl)carbamoyl]-5-chlorophenoxy}acetic acid",
+    "resolution": 0.76,
+    "r_factor": 0.132,
+    "r_free": 0.1337,
+    "experimental_method": "X-RAY DIFFRACTION",
+    "temperature": 100.0,
+    "publication": {
+      "doi": "10.1021/cb400526n",
+      "pubmed_id": 23988122,
+      "title": "Modulation of aldose reductase inhibition by halogen bond tuning.",
+      "year": 2013
+    },
+    "related_structures": [
+      {
+        "pdb_id": "1US0",
+        "details": null
+      },
+      {
+        "pdb_id": "2IKI",
+        "details": null
+      },
+      {
+        "pdb_id": "4LAU",
+        "details": null
+      },
+      {
+        "pdb_id": "4LAZ",
+        "details": null
+      },
+      {
+        "pdb_id": "4LB3",
+        "details": null
+      },
+      {
+        "pdb_id": "4LB4",
+        "details": null
+      },
+      {
+        "pdb_id": "4LBR",
+        "details": null
+      }
+    ],
+    "keywords": [
+      "OXIDOREDUCTASE"
+    ],
+    "binding_data": [
+      {
+        "comp_id": "4O8",
+        "type": "IC50",
+        "value": 1190.0,
+        "unit": "nM",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=4LBS"
+      }
+    ]
+  },
+  "3BCJ": {
+    "title": "Crystal structure of Aldose Reductase complexed with 2S4R (Stereoisomer of Fidarestat, 2S4S) at 0.78 A",
+    "resolution": 0.78,
+    "r_factor": 0.1054,
+    "r_free": 0.11,
+    "experimental_method": "X-RAY DIFFRACTION",
+    "temperature": 15.0,
+    "publication": {
+      "doi": "10.1021/jm701514k",
+      "pubmed_id": 18284183,
+      "title": "Unusual Binding Mode of the 2S4R Stereoisomer of the Potent Aldose Reductase Cyclic Imide Inhibitor Fidarestat (2S4S) in the 15 K Crystal Structure of the Ternary Complex Refined at 0.78 A Resolution: Implications for the Inhibition Mechanism",
+      "year": 2008
+    },
+    "related_structures": [
+      {
+        "pdb_id": "1X98",
+        "details": "Same structure at 1.3 A"
+      },
+      {
+        "pdb_id": "1PWM",
+        "details": "Same protein with Fidarestat (2S4S)"
+      }
+    ],
+    "keywords": [
+      "OXIDOREDUCTASE"
+    ],
+    "binding_data": [
+      {
+        "comp_id": "FIS",
+        "type": "IC50",
+        "value": 11000.0,
+        "unit": "nM",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=3BCJ"
+      }
+    ]
+  },
+  "2QXW": {
+    "title": "Perdeuterated alr2 in complex with idd594",
+    "resolution": 0.8,
+    "r_factor": 0.104,
+    "r_free": 0.1121,
+    "experimental_method": "X-RAY DIFFRACTION",
+    "temperature": 15.0,
+    "publication": {
+      "doi": "10.1073/pnas.0711659105",
+      "pubmed_id": 18250329,
+      "title": "Quantum model of catalysis based on a mobile proton revealed by subatomic x-ray and neutron diffraction studies of h-aldose reductase.",
+      "year": 2008
+    },
+    "related_structures": [
+      {
+        "pdb_id": "1US0",
+        "details": null
+      }
+    ],
+    "keywords": [
+      "OXIDOREDUCTASE"
+    ],
+    "binding_data": [
+      {
+        "comp_id": "LDT",
+        "type": "IC50",
+        "value": 3.0,
+        "unit": "nM",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=2QXW"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "-T&Delta;S",
+        "value": -22.58839988708496,
+        "unit": "kJ/mol",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=2QXW"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "&Delta;G",
+        "value": -38.70000076293945,
+        "unit": "kJ/mol",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=2QXW"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "&Delta;G",
+        "value": -31.299999237060547,
+        "unit": "kJ/mol",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=2QXW"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "-T&Delta;S",
+        "value": -14.691399574279785,
+        "unit": "kJ/mol",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=2QXW"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "-T&Delta;S",
+        "value": 7.986400127410889,
+        "unit": "kJ/mol",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=2QXW"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "IC50",
+        "value": 30.0,
+        "unit": "nM",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=2QXW"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "&Delta;G",
+        "value": -40.900001525878906,
+        "unit": "kJ/mol",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=2QXW"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "&Delta;G",
+        "value": -31.5,
+        "unit": "kJ/mol",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=2QXW"
+      },
+      {
+        "comp_id": "LDT",
+        "type": "&Delta;H",
+        "value": -46.20000076293945,
+        "unit": "kJ/mol",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=2QXW"
+      }
+    ]
+  },
+  "4LB3": {
+    "title": "Crystal structure of human AR complexed with NADP+ and {5-chloro-2-[(2-fluoro-4-iodobenzyl)carbamoyl]phenoxy}acetic acid",
+    "resolution": 0.8,
+    "r_factor": 0.1306,
+    "r_free": 0.1308,
+    "experimental_method": "X-RAY DIFFRACTION",
+    "temperature": 100.0,
+    "publication": {
+      "doi": "10.1021/cb400526n",
+      "pubmed_id": 23988122,
+      "title": "Modulation of aldose reductase inhibition by halogen bond tuning.",
+      "year": 2013
+    },
+    "related_structures": [
+      {
+        "pdb_id": "1US0",
+        "details": null
+      },
+      {
+        "pdb_id": "2IKI",
+        "details": null
+      },
+      {
+        "pdb_id": "4LAU",
+        "details": null
+      },
+      {
+        "pdb_id": "4LAZ",
+        "details": null
+      },
+      {
+        "pdb_id": "4LB4",
+        "details": null
+      },
+      {
+        "pdb_id": "4LBR",
+        "details": null
+      },
+      {
+        "pdb_id": "4LBS",
+        "details": null
+      }
+    ],
+    "keywords": [
+      "OXIDOREDUCTASE"
+    ],
+    "binding_data": [
+      {
+        "comp_id": "M15",
+        "type": "IC50",
+        "value": 190.0,
+        "unit": "nM",
+        "reference_sequence_identity": 99,
+        "provenance_code": "BindingDB",
+        "link": "https://www.bindingdb.org/rwd/jsp/dbsearch/PrimarySearch_pdbids.jsp?pdbids_submit=Search&pdbids=4LB3"
+      }
+    ]
+  }
+}
