@@ -9,11 +9,10 @@
 
 - Enhance data categorization
 - Add more advanced property calculations
-- Design database schema for docking results
+- Design database schema
 
 ### Phase 3
 
-- Integrate with docking software
 - Develop result parsers
 - Implement Solana blockchain storage
 
@@ -113,7 +112,6 @@ The project organizes data as follows:
 
 - `data/raw/`: Downloaded PDB files
 - `data/processed/`: Processed and categorized data
-- `data/docking/`: Molecular docking results
 - `logs/`: Application logs
 
 ## Database Schema
@@ -123,8 +121,6 @@ The database stores the following entities:
 - Proteins: Basic protein information
 - Ligands: Ligand properties and binding site information
 - Protein Categories: Classification of proteins
-- Docking Jobs: Docking simulation settings
-- Docking Poses: Results from docking simulations
 - Data Integrity Records: Hashes for data integrity verification
 
 ## Development
@@ -140,5 +136,4 @@ backend/
 │   ├── data_processing/
 │   ├── categorization/
 │   ├── database/
-│   └── docking/
 ```

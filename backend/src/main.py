@@ -3,14 +3,11 @@ import json
 import time
 from pathlib import Path
 
-import pandas as pd
-
 # Import Phase 2 components
 from categorization import StructureCategorizer
 from data_collection import PDBCollector
 from data_processing import PDBProcessor
 from database.service import DatabaseService
-from docking import DockingManager
 from loguru import logger
 
 
@@ -236,7 +233,14 @@ def main():
             logger.info(f"{key}: {value}")
 
     if not any(
-        [args.download, args.process, args.categorize, args.init_db, args.import_db]
+        [
+            args.download,
+            args.process,
+            args.categorize,
+            args.init_db,
+            args.import_db,
+            args.dock,
+        ]
     ):
         parser.print_help()
 

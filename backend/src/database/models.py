@@ -41,7 +41,6 @@ class Protein(Base):
 
     # Relationships
     ligands = relationship("Ligand", back_populates="protein")
-    docking_jobs = relationship("DockingJob", back_populates="protein")
     categories = relationship("ProteinCategory", secondary=protein_category_association)
 
     created_at = Column(DateTime, server_default=func.now())
@@ -79,7 +78,6 @@ class Ligand(Base):
 
     # Relationships
     protein = relationship("Protein", back_populates="ligands")
-    docking_poses = relationship("DockingPose", back_populates="ligand")
 
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, onupdate=func.now())
@@ -93,48 +91,6 @@ class ProteinCategory(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
     description = Column(String)
-
-    created_at = Column(DateTime, server_default=func.now())
-
-
-class DockingJob(Base):
-    """Docking simulation job"""
-
-    __tablename__ = "docking_jobs"
-
-    id = Column(Integer, primary_key=True)
-    protein_id = Column(Integer, ForeignKey("proteins.id"))
-    job_name = Column(String)
-    docking_software = Column(String)
-    parameters = Column(JSON)  # Docking parameters
-    status = Column(String)  # 'pending', 'running', 'completed', 'failed'
-    job_directory = Column(String)  # Path to job files
-
-    # Relationships
-    protein = relationship("Protein", back_populates="docking_jobs")
-    poses = relationship("DockingPose", back_populates="docking_job")
-
-    started_at = Column(DateTime)
-    completed_at = Column(DateTime)
-    created_at = Column(DateTime, server_default=func.now())
-
-
-class DockingPose(Base):
-    """Individual docking pose result"""
-
-    __tablename__ = "docking_poses"
-
-    id = Column(Integer, primary_key=True)
-    docking_job_id = Column(Integer, ForeignKey("docking_jobs.id"))
-    ligand_id = Column(Integer, ForeignKey("ligands.id"))
-    pose_rank = Column(Integer)
-    score = Column(Float)
-    rmsd_to_reference = Column(Float, nullable=True)  # For redocking validation
-    pose_file_path = Column(String)  # Path to pose file
-
-    # Relationships
-    docking_job = relationship("DockingJob", back_populates="poses")
-    ligand = relationship("Ligand", back_populates="docking_poses")
 
     created_at = Column(DateTime, server_default=func.now())
 

@@ -11,8 +11,6 @@ from sqlalchemy.orm import sessionmaker
 from .models import (
     Base,
     DataIntegrityRecord,
-    DockingJob,
-    DockingPose,
     Ligand,
     Protein,
     ProteinCategory,
@@ -394,10 +392,6 @@ class DatabaseService:
                 "category_count": session.query(
                     func.count(ProteinCategory.id)
                 ).scalar(),
-                "docking_job_count": session.query(func.count(DockingJob.id)).scalar(),
-                "docking_pose_count": session.query(
-                    func.count(DockingPose.id)
-                ).scalar(),
             }
             return stats
         finally:
@@ -472,119 +466,6 @@ class DatabaseService:
         except Exception as e:
             session.rollback()
             logger.error(f"Error updating protein categories: {e}")
-        finally:
-            session.close()
-
-    def create_docking_job(
-        self, protein_id: int, job_name: str, software: str, parameters: Dict
-    ) -> Optional[int]:
-        """
-        Create a new docking job.
-
-        Args:
-            protein_id: Database ID of the protein
-            job_name: Name of the job
-            software: Docking software name
-            parameters: Docking parameters
-
-        Returns:
-            ID of the created job or None if failed
-        """
-        session = self.get_session()
-        try:
-            # Create job directory name using protein ID and job name
-            job_dir = f"protein_{protein_id}_{job_name.replace(' ', '_').lower()}"
-
-            job = DockingJob(
-                protein_id=protein_id,
-                job_name=job_name,
-                docking_software=software,
-                parameters=parameters,
-                status="pending",
-                job_directory=job_dir,
-            )
-
-            session.add(job)
-            session.commit()
-            logger.info(f"Created docking job {job.id}: {job_name}")
-
-            return job.id
-
-        except Exception as e:
-            session.rollback()
-            logger.error(f"Error creating docking job: {e}")
-            return None
-        finally:
-            session.close()
-
-    def update_docking_job_status(self, job_id: int, status: str, completed_at=None):
-        """
-        Update the status of a docking job.
-
-        Args:
-            job_id: Database ID of the job
-            status: New status ('pending', 'running', 'completed', 'failed')
-            completed_at: Completion timestamp
-        """
-        session = self.get_session()
-        try:
-            job = session.query(DockingJob).filter(DockingJob.id == job_id).first()
-            if not job:
-                logger.error(f"Docking job with ID {job_id} not found")
-                return
-
-            job.status = status
-            if status == "running" and not job.started_at:
-                job.started_at = func.now()
-            if status in ["completed", "failed"] and completed_at:
-                job.completed_at = completed_at
-
-            session.commit()
-            logger.debug(f"Updated docking job {job_id} status to {status}")
-
-        except Exception as e:
-            session.rollback()
-            logger.error(f"Error updating docking job status: {e}")
-        finally:
-            session.close()
-
-    def add_docking_pose(
-        self, job_id: int, ligand_id: int, pose_data: Dict
-    ) -> Optional[int]:
-        """
-        Add a docking pose to the database.
-
-        Args:
-            job_id: Database ID of the docking job
-            ligand_id: Database ID of the ligand
-            pose_data: Dictionary with pose data
-
-        Returns:
-            ID of the created pose or None if failed
-        """
-        session = self.get_session()
-        try:
-            pose = DockingPose(
-                docking_job_id=job_id,
-                ligand_id=ligand_id,
-                pose_rank=pose_data.get("pose_rank", 1),
-                score=pose_data.get("score", 0.0),
-                rmsd_to_reference=pose_data.get("rmsd", None),
-                pose_file_path=pose_data.get("pose_file_path", ""),
-            )
-
-            session.add(pose)
-            session.commit()
-            logger.debug(
-                f"Added docking pose {pose.id} for job {job_id}, ligand {ligand_id}"
-            )
-
-            return pose.id
-
-        except Exception as e:
-            session.rollback()
-            logger.error(f"Error adding docking pose: {e}")
-            return None
         finally:
             session.close()
 
