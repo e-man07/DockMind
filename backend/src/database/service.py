@@ -25,7 +25,7 @@ class DatabaseService:
 
     def get_db_path():
         """Ensures the database directory exists and returns the full path"""
-        db_dir = Path("/home/kshitij/dev/data-management/backend/data")
+        db_dir = Path("/home/piyushjha/mystuff/NeuraViva2/data-management/backend/data")
         db_dir.mkdir(parents=True, exist_ok=True)
         return str(db_dir / "docking_db.sqlite")
 
