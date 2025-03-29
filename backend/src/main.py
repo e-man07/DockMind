@@ -239,7 +239,6 @@ def main():
             args.categorize,
             args.init_db,
             args.import_db,
-            args.dock,
         ]
     ):
         parser.print_help()

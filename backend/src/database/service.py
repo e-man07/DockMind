@@ -322,17 +322,15 @@ class DatabaseService:
         finally:
             session.close()
 
-    def get_all_proteins(self, limit=100, offset=0):
-        """Get all proteins from the database with pagination."""
+    def get_all_proteins(self, limit=None, offset=0):
+        """Get all proteins from the database without pagination."""
         session = self.get_session()
         try:
-            proteins = (
-                session.query(Protein)
-                .order_by(Protein.pdb_id)
-                .limit(limit)
-                .offset(offset)
-                .all()
-            )
+            query = session.query(Protein).order_by(Protein.pdb_id)
+            # Apply limit only if specified
+            if limit:
+                query = query.limit(limit).offset(offset)
+            proteins = query.all()
             return proteins
         finally:
             session.close()
@@ -357,11 +355,11 @@ class DatabaseService:
         finally:
             session.close()
 
-    def get_proteins_by_category(self, category_name, limit=100, offset=0):
-        """Get proteins by category name."""
+    def get_proteins_by_category(self, category_name, limit=None, offset=0):
+        """Get all proteins by category name without pagination."""
         session = self.get_session()
         try:
-            proteins = (
+            query = (
                 session.query(Protein)
                 .join(
                     protein_category_association,
@@ -373,11 +371,13 @@ class DatabaseService:
                 )
                 .filter(ProteinCategory.name == category_name)
                 .order_by(Protein.pdb_id)
-                .limit(limit)
-                .offset(offset)
-                .all()
             )
-
+            
+            # Apply limit only if specified
+            if limit:
+                query = query.limit(limit).offset(offset)
+                
+            proteins = query.all()
             return proteins
         finally:
             session.close()
