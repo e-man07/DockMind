@@ -3,6 +3,7 @@
 const API_BASE_URL = 'http://localhost:8000'; // Adjust if your backend is hosted elsewhere
 
 export interface ChainData {
+  residue_range: string;
   entity_type: string;
   residue_count: string;
   sequence: string;
@@ -18,6 +19,7 @@ export interface Protein {
   title: string;
   description: string;
   chain_data: Record<string, ChainData>;
+  status: string;
   resolution: number;
   deposition_date: string;
   categories: Category[];
@@ -31,13 +33,38 @@ export interface Category {
   description: string;
 }
 
+export interface BindingSiteData {
+  residues: string[];
+  distance: number;
+  interactions?: {
+    type: string;
+    distance: number;
+    atoms: string[];
+  }[];
+}
+
 export interface Ligand {
   id: number;
-  name: string;
+  name?: string; 
+  residue_name: string;
+  chain_id: string;
+  residue_id: string;
+  num_atoms: number;
+  center_x: number;
+  center_y: number;
+  center_z: number;
   smiles: string;
-  molecular_weight: number;
-  created_at: string;
-  updated_at: string;
+  inchi: string;
+  molecular_weight: number | null;
+  logp: number | null;
+  h_donors: number | null;
+  h_acceptors: number | null;
+  rotatable_bonds: number | null;
+  tpsa: number | null;
+  qed: number | null;
+  binding_site_data: BindingSiteData | null;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface ProteinListResponse {
