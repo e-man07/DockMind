@@ -36,6 +36,32 @@ class StructureCategorizer:
             "gpcr": ["receptor", "gpcr", "g-protein", "transmembrane"],
             "nuclear_receptor": ["nuclear", "hormone", "receptor"],
             "oxidoreductase": ["dehydrogenase", "reductase", "oxidase"],
+            # Additional protein families
+            "ion_channel": ["ion channel", "channel", "voltage-gated", "ligand-gated"],
+            "transporter": [
+                "transporter",
+                "pump",
+                "exchanger",
+                "symporter",
+                "antiporter",
+            ],
+            "transcription_factor": [
+                "transcription factor",
+                "transcriptional regulator",
+                "dna-binding",
+            ],
+            "transferase": [
+                "transferase",
+                "methyltransferase",
+                "acetyltransferase",
+                "glycosyltransferase",
+            ],
+            "isomerase": ["isomerase", "epimerase", "racemase", "mutase"],
+            "ligase": ["ligase", "synthetase", "carboxylase", "dna ligase"],
+            "lyase": ["lyase", "decarboxylase", "aldolase", "dehydratase"],
+            "cytokine": ["cytokine", "interleukin", "chemokine", "interferon"],
+            "chaperone": ["chaperone", "heat shock", "chaperonin", "hsp"],
+            "antibody": ["antibody", "immunoglobulin", "fab", "antigen-binding"],
         }
 
     def load_processed_data(self) -> pd.DataFrame:
@@ -227,7 +253,6 @@ class StructureCategorizer:
                         Lipinski.NumHAcceptors(mol) > 10,
                         Descriptors.MolLogP(mol) > 5,
                     ]
-                    if x
                 )
                 <= 1,
             }
@@ -237,20 +262,20 @@ class StructureCategorizer:
         except Exception as e:
             logger.error(f"Error calculating ligand properties: {e}")
             return {"error": str(e)}
-        
+
     def categorize_by_experimental_quality(self, metadata: Dict) -> str:
         """
         Categorize structures by experimental quality metrics.
-        
+
         Args:
             metadata: Dictionary containing structure metadata
-            
+
         Returns:
             Quality category as string
         """
         resolution = metadata.get("resolution")
         r_free = metadata.get("r_free")
-        
+
         if resolution and r_free:
             if resolution < 1.5 and r_free < 0.2:
                 return "high_quality"
@@ -289,7 +314,9 @@ class StructureCategorizer:
         structure_data["protein_families"] = self.categorize_by_protein_family(metadata)
 
         # Add experimental quality categorization
-        structure_data["experimental_quality"] = self.categorize_by_experimental_quality(metadata)
+        structure_data["experimental_quality"] = (
+            self.categorize_by_experimental_quality(metadata)
+        )
 
         if "binding_data" in metadata:
             binding_metrics = {}
@@ -298,23 +325,40 @@ class StructureCategorizer:
                 metric_type = entry.get("type")
                 value = entry.get("value")
                 unit = entry.get("unit")
-                
+                provenance = entry.get("provenance_code", "")
+                reference_identity = entry.get("reference_sequence_identity", None)
+                link = entry.get("link", "")
+
+                # Initialize the ligand entry if it doesn't exist
                 if ligand_id not in binding_metrics:
                     binding_metrics[ligand_id] = {}
-                    
-                binding_metrics[ligand_id][metric_type] = {"value": value, "unit": unit}
-            
+
+                # Initialize the metric type as a list if it doesn't exist
+                if metric_type not in binding_metrics[ligand_id]:
+                    binding_metrics[ligand_id][metric_type] = []
+
+                # Add this measurement to the list for this metric type
+                binding_metrics[ligand_id][metric_type].append(
+                    {
+                        "value": value,
+                        "unit": unit,
+                        "provenance": provenance,
+                        "reference_identity": reference_identity,
+                        "link": link,
+                    }
+                )
+
             structure_data["binding_metrics"] = binding_metrics
-        
+
         # Add related structures info if available
         if "related_structures" in metadata:
             structure_data["related_structures"] = metadata["related_structures"]
-        
+
         # Add experimental conditions
         structure_data["experimental_conditions"] = {
             "method": metadata.get("experimental_method"),
             "temperature": metadata.get("temperature"),
-            "resolution": metadata.get("resolution")
+            "resolution": metadata.get("resolution"),
         }
 
         # Add binding site information

@@ -22,16 +22,9 @@ class LigandBase(BaseModel):
     center_x: float
     center_y: float
     center_z: float
-    smiles: Optional[str] = None
-    inchi: Optional[str] = None
-    molecular_weight: Optional[float] = None
-    logp: Optional[float] = None
-    h_donors: Optional[int] = None
-    h_acceptors: Optional[int] = None
-    rotatable_bonds: Optional[int] = None
-    tpsa: Optional[float] = None
-    qed: Optional[float] = None
+    
     binding_site_data: Optional[Dict[str, Any]] = None
+    binding_metrics: Optional[Dict[str, Any]] = None
     
     class Config:
         from_attributes = True
@@ -43,7 +36,6 @@ class ProteinBase(BaseModel):
     title: Optional[str] = None
     description: Optional[str] = None
     resolution: Optional[float] = None
-    deposition_date: Optional[datetime] = None
     experiment_type: Optional[str] = None
     num_chains: Optional[int] = None
     chain_data: Optional[Dict[str, Any]] = None
@@ -76,11 +68,12 @@ class CategoryResponse(CategoryBase):
 class LigandResponse(BaseModel):
     """Response model for ligand data"""
     ligand: LigandBase
-    binding_metrics: Optional[Dict[str, Any]] = None
 
 class ProteinDetailedResponse(ProteinBase):
     """Detailed protein response including categories"""
     categories: List[CategoryBase] = []
+    temperature: Optional[float] = None
+    quality: Optional[str] = None
 
 class ProteinResponse(BaseModel):
     """Response model for protein data with its ligands"""

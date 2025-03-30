@@ -1,7 +1,7 @@
 import ast
 import json
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 import pandas as pd
 from loguru import logger
@@ -10,7 +10,6 @@ from sqlalchemy.orm import sessionmaker
 
 from .models import (
     Base,
-    DataIntegrityRecord,
     Ligand,
     Protein,
     ProteinCategory,
@@ -119,14 +118,27 @@ class DatabaseService:
                             f"Parsed experimental quality for {pdb_id}: {exp_quality}"
                         )
 
+                    if "experimental_conditions" in row and pd.notna(
+                        row["experimental_conditions"]
+                    ):
+                        method = json.loads(
+                            row["experimental_conditions"].replace("'", '"')
+                        )
+                        exp_quality["structure_method"] = method.get("method", "")
+                        exp_quality["resolution"] = method.get("resolution", None)
+                        exp_quality["temperature"] = method.get("temperature", None)
+                        logger.debug(
+                            f"Parsed experimental conditions for {pdb_id}: {exp_quality}"
+                        )
+
                     # Create protein object
                     protein = Protein(
                         pdb_id=pdb_id,
-                        title=f"Structure {pdb_id}",  # Default title
+                        title=row.get("title", ""),
                         description=f"Enhanced structure {pdb_id} from categorization pipeline",
-                        resolution=exp_quality.get("resolution")
-                        if exp_quality
-                        else None,
+                        quality=exp_quality.get("quality_level", ""),
+                        temperature=exp_quality.get("temperature"),
+                        resolution=exp_quality.get("resolution"),
                         experiment_type=exp_quality.get("structure_method", ""),
                         num_chains=row.get("num_chains", 0),
                         chain_data=chains_data,
@@ -181,15 +193,30 @@ class DatabaseService:
                 if "binding_metrics" in row and pd.notna(row["binding_metrics"]):
                     try:
                         if isinstance(row["binding_metrics"], str):
-                            binding_metrics = json.loads(
-                                row["binding_metrics"].replace("'", '"')
-                            )
+                            # First try standard JSON parsing
+                            try:
+                                binding_metrics = json.loads(
+                                    row["binding_metrics"].replace("'", '"')
+                                )
+                            except json.JSONDecodeError:
+                                # If that fails, try with additional replacements for special characters
+                                binding_metrics = json.loads(
+                                    row["binding_metrics"]
+                                    .replace("'", '"')
+                                    .replace("&Delta;", "Delta_")
+                                    .replace("-T&Delta;S", "neg_TDelta_S")
+                                )
                         else:
                             binding_metrics = row["binding_metrics"]
+
+                        logger.debug(
+                            f"Parsed binding metrics for {pdb_id}: {binding_metrics}"
+                        )
                     except (json.JSONDecodeError, TypeError, ValueError) as e:
                         logger.warning(
                             f"Could not parse binding metrics for {pdb_id}: {e}"
                         )
+                        binding_metrics = {}
 
                 # Process experimental conditions
                 if "experimental_conditions" in row and pd.notna(
@@ -265,6 +292,25 @@ class DatabaseService:
                                         f"Could not parse ligand center for {pdb_id}: {e}"
                                     )
 
+                            # Get binding site data if available
+                            binding_site_data = {}
+                            if "binding_site" in ligand and ligand["binding_site"]:
+                                try:
+                                    binding_site_data = ligand["binding_site"]
+                                    if isinstance(binding_site_data, str):
+                                        binding_site_data = json.loads(
+                                            binding_site_data.replace("'", '"')
+                                        )
+                                except (
+                                    KeyError,
+                                    json.JSONDecodeError,
+                                    TypeError,
+                                    ValueError,
+                                ) as e:
+                                    logger.warning(
+                                        f"Could not parse binding site data for {pdb_id}: {e}"
+                                    )
+
                             # Create ligand with all enhanced properties
                             new_ligand = Ligand(
                                 protein_id=protein.id,
@@ -275,29 +321,41 @@ class DatabaseService:
                                 center_x=center[0] if len(center) > 0 else 0,
                                 center_y=center[1] if len(center) > 1 else 0,
                                 center_z=center[2] if len(center) > 2 else 0,
-                                smiles=ligand.get("smiles", ""),
-                                inchi=ligand.get("inchi", ""),
-                                # Add enhanced chemical properties if available
-                                molecular_weight=ligand.get("molecular_weight"),
-                                logp=ligand.get("logp"),
-                                h_donors=ligand.get("h_donors"),
-                                h_acceptors=ligand.get("h_acceptors"),
-                                rotatable_bonds=ligand.get("rotatable_bonds"),
-                                tpsa=ligand.get("tpsa"),
+                                # Add binding site information
+                                binding_site_data=binding_site_data,
                             )
 
                             # Add binding metrics if available for this ligand
-                            if binding_metrics and "ligand_binding" in binding_metrics:
+                            if binding_metrics:
                                 ligand_id = ligand.get("ligand_id", "")
                                 chain_id = ligand.get("chain_id", "")
-                                binding_key = f"{chain_id}_{ligand_id}"
+                                residue_name = ligand.get("residue_name", "")
 
-                                if binding_key in binding_metrics["ligand_binding"]:
-                                    ligand_binding = binding_metrics["ligand_binding"][
-                                        binding_key
-                                    ]
+                                # Try different keys that might identify the ligand in binding metrics
+                                binding_keys = [
+                                    f"{chain_id}_{ligand_id}",  # Original format
+                                    residue_name,  # Just the residue name
+                                    f"{chain_id}:{residue_name}",  # Chain:residue format
+                                ]
+
+                                binding_data = None
+                                # Try to find the ligand in binding metrics using different possible keys
+                                for key in binding_keys:
+                                    if key in binding_metrics:
+                                        binding_data = binding_metrics[key]
+                                        break
+                                    elif (
+                                        "ligand_binding" in binding_metrics
+                                        and key in binding_metrics["ligand_binding"]
+                                    ):
+                                        binding_data = binding_metrics[
+                                            "ligand_binding"
+                                        ][key]
+                                        break
+
+                                if binding_data:
                                     # Store binding data as JSON in the database
-                                    new_ligand.binding_data = ligand_binding
+                                    new_ligand.binding_metrics = binding_data
 
                             session.add(new_ligand)
                     except Exception as e:
@@ -372,11 +430,11 @@ class DatabaseService:
                 .filter(ProteinCategory.name == category_name)
                 .order_by(Protein.pdb_id)
             )
-            
+
             # Apply limit only if specified
             if limit:
                 query = query.limit(limit).offset(offset)
-                
+
             proteins = query.all()
             return proteins
         finally:
@@ -466,76 +524,5 @@ class DatabaseService:
         except Exception as e:
             session.rollback()
             logger.error(f"Error updating protein categories: {e}")
-        finally:
-            session.close()
-
-    def add_integrity_record(
-        self, data_type: str, data_id: int, hash_value: str
-    ) -> Optional[int]:
-        """
-        Add a data integrity record.
-
-        Args:
-            data_type: Type of data ('protein', 'ligand', 'docking_result', etc.)
-            data_id: ID of the referenced data
-            hash_value: Content hash
-
-        Returns:
-            ID of the created record or None if failed
-        """
-        session = self.get_session()
-        try:
-            record = DataIntegrityRecord(
-                data_type=data_type,
-                data_id=data_id,
-                hash_value=hash_value,
-                blockchain_status="pending",
-            )
-
-            session.add(record)
-            session.commit()
-            logger.debug(
-                f"Added integrity record {record.id} for {data_type} {data_id}"
-            )
-
-            return record.id
-
-        except Exception as e:
-            session.rollback()
-            logger.error(f"Error adding integrity record: {e}")
-            return None
-        finally:
-            session.close()
-
-    def update_integrity_record(self, record_id: int, tx_id: str, status: str):
-        """
-        Update a data integrity record with blockchain transaction info.
-
-        Args:
-            record_id: Database ID of the record
-            tx_id: Blockchain transaction ID
-            status: Transaction status
-        """
-        session = self.get_session()
-        try:
-            record = (
-                session.query(DataIntegrityRecord)
-                .filter(DataIntegrityRecord.id == record_id)
-                .first()
-            )
-
-            if not record:
-                logger.error(f"Integrity record with ID {record_id} not found")
-                return
-
-            record.blockchain_tx = tx_id
-            record.blockchain_status = status
-
-            session.commit()
-            logger.debug(f"Updated integrity record {record_id} with TX {tx_id}")
-
-        except Exception as e:
-            session.rollback()
-            logger.error(f"Error updating integrity record: {e}")
         finally:
             session.close()

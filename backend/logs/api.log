@@ -1,6 +1,2 @@
-2025-03-29 17:03:59.235 | INFO     | __main__:setup_logger:12 - API logger initialized
-2025-03-29 17:03:59.235 | INFO     | __main__:main:21 - Starting API server on port 8000
-2025-03-29 17:46:24.154 | INFO     | __main__:setup_logger:12 - API logger initialized
-2025-03-29 17:46:24.155 | INFO     | __main__:main:21 - Starting API server on port 8000
-2025-03-29 19:57:55.634 | INFO     | __main__:setup_logger:12 - API logger initialized
-2025-03-29 19:57:55.635 | INFO     | __main__:main:21 - Starting API server on port 8000
+2025-03-30 05:30:04.776 | INFO     | __main__:setup_logger:12 - API logger initialized
+2025-03-30 05:30:04.776 | INFO     | __main__:main:21 - Starting API server on port 8000

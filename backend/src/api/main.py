@@ -135,10 +135,12 @@ async def get_protein_by_id(
             "id": protein.id,
             "pdb_id": protein.pdb_id,
             "title": protein.title,
+            "quality": protein.quality,
+            "temperature":protein.temperature,
             "description": protein.description,
+            "experiment_type":protein.experiment_type,
             "chain_data": protein.chain_data,
             "resolution": protein.resolution,
-            "deposition_date": protein.deposition_date,
             "categories": [
                 {"id": c.id, "name": c.name, "description": c.description}
                 for c in protein.categories
@@ -168,6 +170,7 @@ async def get_ligand_by_id(
         from database.models import Ligand
 
         ligand = session.query(Ligand).filter(Ligand.id == ligand_id).first()
+        print(ligand.binding_metrics)
         if not ligand:
             raise HTTPException(
                 status_code=404, detail=f"Ligand with ID {ligand_id} not found"
@@ -224,37 +227,57 @@ async def get_all_proteins_with_ligands(
 
             # Get ligands for this protein
             ligands_objects = db_service.get_ligands_by_protein_id(protein.id)
-
-            # Prepare the data structure for IPFS
-            protein_with_ligands = {
-                "protein": {
-                    "id": protein.id,
-                    "pdb_id": protein.pdb_id,
-                    # ... other protein fields ...
-                },
-                "ligands": [
-                    {
-                        "id": ligand.id,
-                        "residue_name": ligand.residue_name,
-                        # ... other ligand fields ...
-                    }
-                    for ligand in ligands_objects
+            
+            # Convert ligand objects to dictionaries
+            ligands = []
+            for ligand in ligands_objects:
+                ligand_dict = {
+                    "id": ligand.id,
+                    "residue_name": ligand.residue_name,
+                    "chain_id": ligand.chain_id,
+                    "residue_id": ligand.residue_id,
+                    "num_atoms": ligand.num_atoms,
+                    "center_x": ligand.center_x,
+                    "center_y": ligand.center_y,
+                    "center_z": ligand.center_z,
+                    "smiles": ligand.smiles,
+                    "inchi": ligand.inchi,
+                    "molecular_weight": ligand.molecular_weight,
+                    "logp": ligand.logp,
+                    "h_donors": ligand.h_donors,
+                    "h_acceptors": ligand.h_acceptors,
+                    "rotatable_bonds": ligand.rotatable_bonds,
+                    "tpsa": ligand.tpsa,
+                    "qed": ligand.qed,
+                    "binding_site_data": ligand.binding_site_data,
+                    "created_at": ligand.created_at,
+                    "updated_at": ligand.updated_at
+                }
+                ligands.append(ligand_dict)
+            
+            # Create protein data with categories
+            protein_data = {
+                "id": protein.id,
+                "pdb_id": protein.pdb_id,
+                "title": protein.title,
+                "description": protein.description,
+                "chain_data": protein.chain_data,
+                "resolution": protein.resolution,
+                "categories": [
+                    {"id": c.id, "name": c.name, "description": c.description}
+                    for c in protein.categories
                 ],
+                "created_at": protein.created_at,
+                "updated_at": protein.updated_at,
             }
-            json_files_for_ipfs.append(protein_with_ligands)
-
-        # Upload to IPFS and return only the hashes
-        ipfs_results = upload_json_to_ipfs(json_files_for_ipfs)
-
-        # Filter out any failed uploads (where hash is None)
-        valid_results = [
-            result
-            for result in ipfs_results
-            if result["hash"] is not None and result["protein_id"] is not None
-        ]
-
-        return valid_results
-
+            
+            # Add to result
+            result.append({
+                "protein": protein_data,
+                "ligands": ligands
+            })
+            
+        return result
     except Exception as e:
         logger.error(f"Error uploading to IPFS: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")

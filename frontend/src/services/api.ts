@@ -19,9 +19,11 @@ export interface Protein {
   title: string;
   description: string;
   chain_data: Record<string, ChainData>;
+  experiment_type: string;
   status: string;
   resolution: number;
-  deposition_date: string;
+  temperature: number;
+  quality: string;
   categories: Category[];
   created_at: string;
   updated_at: string;
@@ -33,17 +35,34 @@ export interface Category {
   description: string;
 }
 
-export interface BindingSiteData {
-  residues: string[];
+export interface residue {
+  chain_id: string;
+  residue_id: number;
+  residue_name: string;
   distance: number;
-  interactions?: {
-    type: string;
-    distance: number;
-    atoms: string[];
-  }[];
+}
+
+export interface BindingSiteData {
+  num_binding_residues: number;
+  binding_residues: residue[];
+  avg_distance: number;
+  pocket_polarity: number;
+}
+
+export interface BindingMetricEntry {
+  value: number;
+  unit: string;
+  provenance: string;
+  reference_identity: number;
+  link: string;
+}
+
+export interface BindingMetrics {
+  [metricName: string]: BindingMetricEntry[];
 }
 
 export interface Ligand {
+  binding_metrics: BindingMetrics | null;
   id: number;
   name?: string; 
   residue_name: string;
@@ -53,18 +72,7 @@ export interface Ligand {
   center_x: number;
   center_y: number;
   center_z: number;
-  smiles: string;
-  inchi: string;
-  molecular_weight: number | null;
-  logp: number | null;
-  h_donors: number | null;
-  h_acceptors: number | null;
-  rotatable_bonds: number | null;
-  tpsa: number | null;
-  qed: number | null;
   binding_site_data: BindingSiteData | null;
-  created_at?: string;
-  updated_at?: string;
 }
 
 export interface ProteinListResponse {

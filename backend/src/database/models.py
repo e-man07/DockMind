@@ -32,9 +32,10 @@ class Protein(Base):
     status = Column(String)  # 'processed', 'failed', 'pending'
     pdb_id = Column(String, unique=True, index=True)
     title = Column(String)
-    description = Column(String)
+    quality = Column(String)
+    temperature = Column(Float)
     resolution = Column(Float)
-    deposition_date = Column(DateTime)
+    description = Column(String)
     experiment_type = Column(String)
     num_chains = Column(Integer)
     chain_data = Column(JSON)  # Chain IDs, lengths, etc.
@@ -61,20 +62,10 @@ class Ligand(Base):
     center_x = Column(Float)
     center_y = Column(Float)
     center_z = Column(Float)
-    smiles = Column(String)
-    inchi = Column(String)
-
-    # Chemical properties
-    molecular_weight = Column(Float)
-    logp = Column(Float)
-    h_donors = Column(Integer)
-    h_acceptors = Column(Integer)
-    rotatable_bonds = Column(Integer)
-    tpsa = Column(Float)
-    qed = Column(Float)  # Drug-likeness score
 
     # Binding site properties
     binding_site_data = Column(JSON)
+    binding_metrics = Column(JSON)
 
     # Relationships
     protein = relationship("Protein", back_populates="ligands")
@@ -94,19 +85,3 @@ class ProteinCategory(Base):
 
     created_at = Column(DateTime, server_default=func.now())
 
-
-class DataIntegrityRecord(Base):
-    """Blockchain data integrity records"""
-
-    __tablename__ = "data_integrity_records"
-
-    id = Column(Integer, primary_key=True)
-    data_type = Column(String)  # 'protein', 'ligand', 'docking_result', etc.
-    data_id = Column(Integer)  # ID of the referenced data
-    hash_value = Column(String)  # Content hash
-    blockchain_tx = Column(String)  # Transaction ID on Solana
-    blockchain_status = Column(String)  # 'pending', 'confirmed', 'failed'
-    meta_info = Column(JSON)  # Additional metadata
-
-    created_at = Column(DateTime, server_default=func.now())
-    updated_at = Column(DateTime, onupdate=func.now())
