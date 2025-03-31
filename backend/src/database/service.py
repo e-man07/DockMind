@@ -24,7 +24,7 @@ class DatabaseService:
 
     def get_db_path():
         """Ensures the database directory exists and returns the full path"""
-        db_dir = Path("/home/piyushjha/mystuff/NeuraViva2/data-management/backend/data")
+        db_dir = Path("/home/kshitij/dev/data-management/backend/data")
         db_dir.mkdir(parents=True, exist_ok=True)
         return str(db_dir / "docking_db.sqlite")
 
@@ -442,6 +442,8 @@ class DatabaseService:
 
     def get_database_stats(self):
         """Get basic database statistics."""
+        from datetime import datetime
+
         session = self.get_session()
         try:
             stats = {
@@ -450,6 +452,7 @@ class DatabaseService:
                 "category_count": session.query(
                     func.count(ProteinCategory.id)
                 ).scalar(),
+                "last_updated": datetime.now().isoformat()
             }
             return stats
         finally:
@@ -524,5 +527,99 @@ class DatabaseService:
         except Exception as e:
             session.rollback()
             logger.error(f"Error updating protein categories: {e}")
+        finally:
+            session.close()
+
+    def store_protein_ipfs_hash(self, pdb_id: str, ipfs_hash: str):
+        """
+        Store IPFS hash for a protein.
+        
+        Args:
+            pdb_id: PDB ID of the protein
+            ipfs_hash: IPFS hash to store
+        
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        session = self.get_session()
+        try:
+            from .models import ProteinIPFS
+
+            # Check if protein exists
+            protein = session.query(Protein).filter(Protein.pdb_id == pdb_id).first()
+            if not protein:
+                logger.error(f"Protein with PDB ID {pdb_id} not found")
+                return False
+            
+            # Check if hash already exists
+            existing = (
+                session.query(ProteinIPFS)
+                .filter(ProteinIPFS.protein_pdb_id == pdb_id)
+                .first()
+            )
+            
+            if existing:
+                # Update existing hash
+                existing.ipfs_hash = ipfs_hash
+            else:
+                # Create new hash entry
+                ipfs_entry = ProteinIPFS(
+                    protein_pdb_id=pdb_id,
+                    ipfs_hash=ipfs_hash
+                )
+                session.add(ipfs_entry)
+            
+            session.commit()
+            logger.debug(f"Stored IPFS hash for protein {pdb_id}: {ipfs_hash}")
+            return True
+        
+        except Exception as e:
+            session.rollback()
+            logger.error(f"Error storing IPFS hash: {e}")
+            return False
+        finally:
+            session.close()
+    
+    def get_all_protein_ipfs_hashes(self):
+        """
+        Get all stored IPFS hashes for proteins.
+        
+        Returns:
+            List of dictionaries with protein_pdb_id and ipfs_hash
+        """
+        session = self.get_session()
+        try:
+            from .models import ProteinIPFS
+            
+            results = session.query(ProteinIPFS).all()
+            return [{"protein_id": item.protein_pdb_id, "hash": item.ipfs_hash} for item in results]
+        finally:
+            session.close()
+    
+    def get_ipfs_hash_by_protein_id(self, protein_id: str):
+        """
+        Get the IPFS hash for a specific protein by its PDB ID with structured response.
+        
+        Args:
+            protein_id: PDB ID of the protein
+                
+        Returns:
+            dict: Dictionary with 'protein_id' and 'hash' if found,
+                or just 'protein_id' with None hash if not found
+        """
+        session = self.get_session()
+        try:
+            from .models import ProteinIPFS
+            
+            result = session.query(ProteinIPFS).filter(
+                ProteinIPFS.protein_pdb_id == protein_id
+            ).first()
+            
+            if result:
+                return {"protein_id": protein_id, "hash": result.ipfs_hash}
+            return {"protein_id": protein_id, "hash": None}
+        except Exception as e:
+            logger.error(f"Error retrieving IPFS hash for {protein_id}: {e}")
+            return {"protein_id": protein_id, "hash": None, "error": str(e)}
         finally:
             session.close()

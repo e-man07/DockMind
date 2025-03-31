@@ -1,5 +1,5 @@
-from typing import List, Optional, Dict
 from datetime import datetime
+from typing import Dict, List, Optional
 
 from api.dependencies import get_db_service
 from api.models import (
@@ -12,9 +12,8 @@ from api.models import (
 from database.service import DatabaseService
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from loguru import logger
 from ipfs.pinata_post import upload_json_to_ipfs  # Add this import at the top
-
+from loguru import logger
 from pydantic import BaseModel  # Add this import for the new response model
 
 
@@ -136,9 +135,9 @@ async def get_protein_by_id(
             "pdb_id": protein.pdb_id,
             "title": protein.title,
             "quality": protein.quality,
-            "temperature":protein.temperature,
+            "temperature": protein.temperature,
             "description": protein.description,
-            "experiment_type":protein.experiment_type,
+            "experiment_type": protein.experiment_type,
             "chain_data": protein.chain_data,
             "resolution": protein.resolution,
             "categories": [
@@ -208,11 +207,13 @@ async def get_all_proteins_with_ligands(
     """
     session = db_service.get_session()
     try:
+        import json
+
         from database.models import Protein
         from sqlalchemy.orm import joinedload
 
         proteins = session.query(Protein).options(joinedload(Protein.categories)).all()
-        json_files_for_ipfs = []
+        ipfs_results = []
 
         for protein in proteins:
             # Transform chain_data
@@ -227,7 +228,7 @@ async def get_all_proteins_with_ligands(
 
             # Get ligands for this protein
             ligands_objects = db_service.get_ligands_by_protein_id(protein.id)
-            
+
             # Convert ligand objects to dictionaries
             ligands = []
             for ligand in ligands_objects:
@@ -240,21 +241,12 @@ async def get_all_proteins_with_ligands(
                     "center_x": ligand.center_x,
                     "center_y": ligand.center_y,
                     "center_z": ligand.center_z,
-                    "smiles": ligand.smiles,
-                    "inchi": ligand.inchi,
-                    "molecular_weight": ligand.molecular_weight,
-                    "logp": ligand.logp,
-                    "h_donors": ligand.h_donors,
-                    "h_acceptors": ligand.h_acceptors,
-                    "rotatable_bonds": ligand.rotatable_bonds,
-                    "tpsa": ligand.tpsa,
-                    "qed": ligand.qed,
                     "binding_site_data": ligand.binding_site_data,
-                    "created_at": ligand.created_at,
-                    "updated_at": ligand.updated_at
+                    "created_at": serialize_datetime(ligand.created_at),
+                    "updated_at": serialize_datetime(ligand.updated_at),
                 }
                 ligands.append(ligand_dict)
-            
+
             # Create protein data with categories
             protein_data = {
                 "id": protein.id,
@@ -267,22 +259,67 @@ async def get_all_proteins_with_ligands(
                     {"id": c.id, "name": c.name, "description": c.description}
                     for c in protein.categories
                 ],
-                "created_at": protein.created_at,
-                "updated_at": protein.updated_at,
+                "created_at": serialize_datetime(protein.created_at),
+                "updated_at": serialize_datetime(protein.updated_at),
             }
-            
-            # Add to result
-            result.append({
-                "protein": protein_data,
-                "ligands": ligands
-            })
-            
-        return result
+
+            # Prepare data for IPFS
+            protein_with_ligands = {"protein": protein_data, "ligands": ligands}
+
+            # Upload to IPFS and get hash
+            ipfs_response = upload_json_to_ipfs(protein_with_ligands)
+
+            # Extract just the hash string from the response
+            if isinstance(ipfs_response, dict) and "hash" in ipfs_response:
+                ipfs_hash = ipfs_response["hash"]
+            elif hasattr(ipfs_response, "hash"):
+                ipfs_hash = ipfs_response.hash
+            else:
+                ipfs_hash = str(ipfs_response)
+
+            # Store the hash in the database (only the string)
+            db_service.store_protein_ipfs_hash(protein.pdb_id, ipfs_hash)
+
+            # Add to results - use pdb_id (not the primary key)
+            ipfs_results.append({"hash": ipfs_hash, "protein_id": protein.pdb_id})
+
+        return ipfs_results
     except Exception as e:
         logger.error(f"Error uploading to IPFS: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
     finally:
         session.close()
+
+
+# Define a response model for the IPFS hash endpoint
+class ProteinIPFSResponse(BaseModel):
+    ipfs_hash: str
+    created_at: Optional[datetime] = None
+
+
+@app.get("/proteins/{pdb_id}/ipfs", response_model=ProteinIPFSResponse)
+async def get_ipfs_hash_by_protein_id(
+    pdb_id: str, db_service: DatabaseService = Depends(get_db_service)
+):
+    """
+    Retrieve the IPFS hash for a specific protein by its PDB ID.
+
+    - **pdb_id**: PDB identifier of the protein
+    """
+    try:
+        ipfs_data = db_service.get_ipfs_hash_by_protein_id(pdb_id)
+        if not ipfs_data:
+            raise HTTPException(
+                status_code=404,
+                detail=f"IPFS hash for protein with PDB ID {pdb_id} not found",
+            )
+
+        return {
+            "ipfs_hash": ipfs_data["hash"],
+        }
+    except Exception as e:
+        logger.error(f"Error retrieving IPFS hash: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
 
 
 # Statistics endpoints

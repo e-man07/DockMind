@@ -43,6 +43,7 @@ class Protein(Base):
     # Relationships
     ligands = relationship("Ligand", back_populates="protein")
     categories = relationship("ProteinCategory", secondary=protein_category_association)
+    ipfs_hashes = relationship("ProteinIPFS", back_populates="protein")
 
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, onupdate=func.now())
@@ -84,4 +85,16 @@ class ProteinCategory(Base):
     description = Column(String)
 
     created_at = Column(DateTime, server_default=func.now())
+
+
+class ProteinIPFS(Base):
+    """Model for storing IPFS hashes for proteins"""
+    __tablename__ = "protein_ipfs"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    protein_pdb_id = Column(String, ForeignKey("proteins.pdb_id"), nullable=False)
+    ipfs_hash = Column(String, nullable=False)
+    
+    # Define the relationship to the Protein model
+    protein = relationship("Protein", back_populates="ipfs_hashes")
 

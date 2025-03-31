@@ -96,3 +96,279 @@
 2025-03-30 04:29:07.776 | INFO     | database.service:import_enhanced_structures:77 - Loaded 20 structures from data/processed/enhanced_structures.csv
 2025-03-30 04:29:08.079 | INFO     | database.service:import_enhanced_structures:371 - Database import complete: 20 new proteins, 0 updated
 2025-03-30 04:29:08.080 | INFO     | __main__:main:224 - Data import completed successfully
+2025-03-31 16:36:56.911 | INFO     | __main__:setup_logger:20 - Logger initialized
+2025-03-31 16:36:56.914 | INFO     | __main__:main:94 - Starting PDB download process
+2025-03-31 16:36:56.917 | INFO     | data_collection:__init__:28 - PDB Collector initialized. Output directory: data/raw
+2025-03-31 16:36:58.183 | INFO     | data_collection:search_by_query:62 - Found 1000 PDB entries matching the query
+2025-03-31 16:36:58.187 | INFO     | __main__:main:104 - Found 1000 PDB entries matching criteria
+2025-03-31 16:36:58.188 | INFO     | __main__:main:109 - Limited to 100 structures
+2025-03-31 16:36:58.189 | INFO     | data_collection:batch_download:139 - Starting batch download of 100 PDB files in pdb format
+2025-03-31 16:36:58.189 | INFO     | data_collection:batch_download:144 - Metadata collection enabled
+2025-03-31 16:37:00.270 | INFO     | data_collection:download_pdb:109 - Downloaded 1us0 to data/raw/1us0.pdb
+2025-03-31 16:37:04.326 | INFO     | data_collection:download_pdb:109 - Downloaded 4lbs to data/raw/4lbs.pdb
+2025-03-31 16:37:07.813 | INFO     | data_collection:download_pdb:109 - Downloaded 3bcj to data/raw/3bcj.pdb
+2025-03-31 16:37:11.772 | INFO     | data_collection:download_pdb:109 - Downloaded 2qxw to data/raw/2qxw.pdb
+2025-03-31 16:37:15.462 | INFO     | data_collection:download_pdb:109 - Downloaded 4lb3 to data/raw/4lb3.pdb
+2025-03-31 16:37:19.115 | INFO     | data_collection:download_pdb:109 - Downloaded 4lb4 to data/raw/4lb4.pdb
+2025-03-31 16:37:22.949 | INFO     | data_collection:download_pdb:109 - Downloaded 4lbr to data/raw/4lbr.pdb
+2025-03-31 16:37:26.533 | INFO     | data_collection:download_pdb:109 - Downloaded 2i16 to data/raw/2i16.pdb
+2025-03-31 16:37:29.984 | INFO     | data_collection:download_pdb:109 - Downloaded 2i17 to data/raw/2i17.pdb
+2025-03-31 16:37:33.794 | INFO     | data_collection:download_pdb:109 - Downloaded 6tgu to data/raw/6tgu.pdb
+2025-03-31 16:37:34.556 | INFO     | data_collection:batch_download:179 - Progress: 10/100 (10.0%)
+2025-03-31 16:37:34.560 | INFO     | data_collection:batch_download:185 - Saved metadata for 10 structures
+2025-03-31 16:37:36.818 | INFO     | data_collection:download_pdb:109 - Downloaded 2hs1 to data/raw/2hs1.pdb
+2025-03-31 16:37:40.734 | INFO     | data_collection:download_pdb:109 - Downloaded 7g0z to data/raw/7g0z.pdb
+2025-03-31 16:37:44.558 | INFO     | data_collection:download_pdb:109 - Downloaded 4lau to data/raw/4lau.pdb
+2025-03-31 16:37:48.001 | INFO     | data_collection:download_pdb:109 - Downloaded 2f01 to data/raw/2f01.pdb
+2025-03-31 16:37:51.284 | INFO     | data_collection:download_pdb:109 - Downloaded 2pf8 to data/raw/2pf8.pdb
+2025-03-31 16:37:55.138 | INFO     | data_collection:download_pdb:109 - Downloaded 2pfh to data/raw/2pfh.pdb
+2025-03-31 16:37:59.084 | INFO     | data_collection:download_pdb:109 - Downloaded 4laz to data/raw/4laz.pdb
+2025-03-31 16:38:02.974 | INFO     | data_collection:download_pdb:109 - Downloaded 5mnn to data/raw/5mnn.pdb
+2025-03-31 16:38:06.988 | INFO     | data_collection:download_pdb:109 - Downloaded 4qxi to data/raw/4qxi.pdb
+2025-03-31 16:38:10.959 | INFO     | data_collection:download_pdb:109 - Downloaded 2pev to data/raw/2pev.pdb
+2025-03-31 16:38:11.714 | INFO     | data_collection:batch_download:179 - Progress: 20/100 (20.0%)
+2025-03-31 16:38:11.719 | INFO     | data_collection:batch_download:185 - Saved metadata for 20 structures
+2025-03-31 16:38:13.772 | INFO     | data_collection:download_pdb:109 - Downloaded 7wdj to data/raw/7wdj.pdb
+2025-03-31 16:38:17.643 | INFO     | data_collection:download_pdb:109 - Downloaded 1pwm to data/raw/1pwm.pdb
+2025-03-31 16:38:20.872 | INFO     | data_collection:download_pdb:109 - Downloaded 6te2 to data/raw/6te2.pdb
+2025-03-31 16:38:24.273 | INFO     | data_collection:download_pdb:109 - Downloaded 7mbo to data/raw/7mbo.pdb
+2025-03-31 16:38:27.452 | INFO     | data_collection:download_pdb:109 - Downloaded 3fx5 to data/raw/3fx5.pdb
+2025-03-31 16:38:30.755 | INFO     | data_collection:download_pdb:109 - Downloaded 3m4h to data/raw/3m4h.pdb
+2025-03-31 16:38:33.733 | INFO     | data_collection:download_pdb:109 - Downloaded 4qb3 to data/raw/4qb3.pdb
+2025-03-31 16:38:37.620 | INFO     | data_collection:download_pdb:109 - Downloaded 6sbl to data/raw/6sbl.pdb
+2025-03-31 16:38:40.954 | INFO     | data_collection:download_pdb:109 - Downloaded 6y1p to data/raw/6y1p.pdb
+2025-03-31 16:38:44.815 | INFO     | data_collection:download_pdb:109 - Downloaded 8cnp to data/raw/8cnp.pdb
+2025-03-31 16:38:45.619 | INFO     | data_collection:batch_download:179 - Progress: 30/100 (30.0%)
+2025-03-31 16:38:45.625 | INFO     | data_collection:batch_download:185 - Saved metadata for 30 structures
+2025-03-31 16:38:48.460 | INFO     | data_collection:download_pdb:109 - Downloaded 6rh4 to data/raw/6rh4.pdb
+2025-03-31 16:38:51.248 | INFO     | data_collection:download_pdb:109 - Downloaded 1z8a to data/raw/1z8a.pdb
+2025-03-31 16:38:55.091 | INFO     | data_collection:download_pdb:109 - Downloaded 3lz5 to data/raw/3lz5.pdb
+2025-03-31 16:38:58.789 | INFO     | data_collection:download_pdb:109 - Downloaded 3ry2 to data/raw/3ry2.pdb
+2025-03-31 16:39:02.294 | INFO     | data_collection:download_pdb:109 - Downloaded 6fo5 to data/raw/6fo5.pdb
+2025-03-31 16:39:05.537 | INFO     | data_collection:download_pdb:109 - Downloaded 6sbh to data/raw/6sbh.pdb
+2025-03-31 16:39:08.866 | INFO     | data_collection:download_pdb:109 - Downloaded 6sbm to data/raw/6sbm.pdb
+2025-03-31 16:39:12.844 | INFO     | data_collection:download_pdb:109 - Downloaded 6txp to data/raw/6txp.pdb
+2025-03-31 16:39:16.865 | INFO     | data_collection:download_pdb:109 - Downloaded 8b66 to data/raw/8b66.pdb
+2025-03-31 16:39:20.668 | INFO     | data_collection:download_pdb:109 - Downloaded 6rkn to data/raw/6rkn.pdb
+2025-03-31 16:39:21.408 | INFO     | data_collection:batch_download:179 - Progress: 40/100 (40.0%)
+2025-03-31 16:39:21.425 | INFO     | data_collection:batch_download:185 - Saved metadata for 40 structures
+2025-03-31 16:39:23.793 | INFO     | data_collection:download_pdb:109 - Downloaded 1luq to data/raw/1luq.pdb
+2025-03-31 16:39:27.716 | INFO     | data_collection:download_pdb:109 - Downloaded 4yxi to data/raw/4yxi.pdb
+2025-03-31 16:39:31.480 | INFO     | data_collection:download_pdb:109 - Downloaded 5mno to data/raw/5mno.pdb
+2025-03-31 16:39:35.317 | INFO     | data_collection:download_pdb:109 - Downloaded 6rfh to data/raw/6rfh.pdb
+2025-03-31 16:39:39.052 | INFO     | data_collection:download_pdb:109 - Downloaded 2nmz to data/raw/2nmz.pdb
+2025-03-31 16:39:42.616 | INFO     | data_collection:download_pdb:109 - Downloaded 6qlr to data/raw/6qlr.pdb
+2025-03-31 16:39:46.694 | INFO     | data_collection:download_pdb:109 - Downloaded 7rwg to data/raw/7rwg.pdb
+2025-03-31 16:39:50.376 | INFO     | data_collection:download_pdb:109 - Downloaded 5zio to data/raw/5zio.pdb
+2025-03-31 16:39:54.200 | INFO     | data_collection:download_pdb:109 - Downloaded 6t81 to data/raw/6t81.pdb
+2025-03-31 16:39:56.919 | INFO     | data_collection:download_pdb:109 - Downloaded 7xfa to data/raw/7xfa.pdb
+2025-03-31 16:39:57.708 | INFO     | data_collection:batch_download:179 - Progress: 50/100 (50.0%)
+2025-03-31 16:39:57.731 | INFO     | data_collection:batch_download:185 - Saved metadata for 50 structures
+2025-03-31 16:40:00.400 | INFO     | data_collection:download_pdb:109 - Downloaded 7qyo to data/raw/7qyo.pdb
+2025-03-31 16:40:04.238 | INFO     | data_collection:download_pdb:109 - Downloaded 3lep to data/raw/3lep.pdb
+2025-03-31 16:40:08.241 | INFO     | data_collection:download_pdb:109 - Downloaded 6td0 to data/raw/6td0.pdb
+2025-03-31 16:40:11.497 | INFO     | data_collection:download_pdb:109 - Downloaded 6rig to data/raw/6rig.pdb
+2025-03-31 16:40:14.732 | INFO     | data_collection:download_pdb:109 - Downloaded 2agt to data/raw/2agt.pdb
+2025-03-31 16:40:18.567 | INFO     | data_collection:download_pdb:109 - Downloaded 2gg2 to data/raw/2gg2.pdb
+2025-03-31 16:40:22.074 | INFO     | data_collection:download_pdb:109 - Downloaded 2gh7 to data/raw/2gh7.pdb
+2025-03-31 16:40:25.308 | INFO     | data_collection:download_pdb:109 - Downloaded 2pzn to data/raw/2pzn.pdb
+2025-03-31 16:40:28.926 | INFO     | data_collection:download_pdb:109 - Downloaded 3djk to data/raw/3djk.pdb
+2025-03-31 16:40:32.738 | INFO     | data_collection:download_pdb:109 - Downloaded 3ghr to data/raw/3ghr.pdb
+2025-03-31 16:40:33.573 | INFO     | data_collection:batch_download:179 - Progress: 60/100 (60.0%)
+2025-03-31 16:40:33.590 | INFO     | data_collection:batch_download:185 - Saved metadata for 60 structures
+2025-03-31 16:40:35.997 | INFO     | data_collection:download_pdb:109 - Downloaded 3ghs to data/raw/3ghs.pdb
+2025-03-31 16:40:39.844 | INFO     | data_collection:download_pdb:109 - Downloaded 3u2c to data/raw/3u2c.pdb
+2025-03-31 16:40:42.874 | INFO     | data_collection:download_pdb:109 - Downloaded 4x6h to data/raw/4x6h.pdb
+2025-03-31 16:40:46.464 | INFO     | data_collection:download_pdb:109 - Downloaded 4xzh to data/raw/4xzh.pdb
+2025-03-31 16:40:50.162 | INFO     | data_collection:download_pdb:109 - Downloaded 6qln to data/raw/6qln.pdb
+2025-03-31 16:40:53.998 | INFO     | data_collection:download_pdb:109 - Downloaded 6rl9 to data/raw/6rl9.pdb
+2025-03-31 16:40:57.863 | INFO     | data_collection:download_pdb:109 - Downloaded 6sfq to data/raw/6sfq.pdb
+2025-03-31 16:41:01.769 | INFO     | data_collection:download_pdb:109 - Downloaded 4yx4 to data/raw/4yx4.pdb
+2025-03-31 16:41:05.722 | INFO     | data_collection:download_pdb:109 - Downloaded 5mnp to data/raw/5mnp.pdb
+2025-03-31 16:41:09.642 | INFO     | data_collection:download_pdb:109 - Downloaded 6t7q to data/raw/6t7q.pdb
+2025-03-31 16:41:10.529 | INFO     | data_collection:batch_download:179 - Progress: 70/100 (70.0%)
+2025-03-31 16:41:10.553 | INFO     | data_collection:batch_download:185 - Saved metadata for 70 structures
+2025-03-31 16:41:13.013 | INFO     | data_collection:download_pdb:109 - Downloaded 4jfm to data/raw/4jfm.pdb
+2025-03-31 16:41:17.304 | INFO     | data_collection:download_pdb:109 - Downloaded 6hr3 to data/raw/6hr3.pdb
+2025-03-31 16:41:21.142 | INFO     | data_collection:download_pdb:109 - Downloaded 3lz3 to data/raw/3lz3.pdb
+2025-03-31 16:41:24.845 | INFO     | data_collection:download_pdb:109 - Downloaded 3ndx to data/raw/3ndx.pdb
+2025-03-31 16:41:26.385 | INFO     | data_collection:download_pdb:109 - Downloaded 5ll8 to data/raw/5ll8.pdb
+2025-03-31 16:41:30.341 | INFO     | data_collection:download_pdb:109 - Downloaded 8b3n to data/raw/8b3n.pdb
+2025-03-31 16:41:33.941 | INFO     | data_collection:download_pdb:109 - Downloaded 6bqa to data/raw/6bqa.pdb
+2025-03-31 16:41:37.871 | INFO     | data_collection:download_pdb:109 - Downloaded 1z3n to data/raw/1z3n.pdb
+2025-03-31 16:41:41.805 | INFO     | data_collection:download_pdb:109 - Downloaded 6hmb to data/raw/6hmb.pdb
+2025-03-31 16:41:45.344 | INFO     | data_collection:download_pdb:109 - Downloaded 5i40 to data/raw/5i40.pdb
+2025-03-31 16:41:46.142 | INFO     | data_collection:batch_download:179 - Progress: 80/100 (80.0%)
+2025-03-31 16:41:46.161 | INFO     | data_collection:batch_download:185 - Saved metadata for 80 structures
+2025-03-31 16:41:49.249 | INFO     | data_collection:download_pdb:109 - Downloaded 1t41 to data/raw/1t41.pdb
+2025-03-31 16:41:53.406 | INFO     | data_collection:download_pdb:109 - Downloaded 2gg9 to data/raw/2gg9.pdb
+2025-03-31 16:41:57.162 | INFO     | data_collection:download_pdb:109 - Downloaded 3d1x to data/raw/3d1x.pdb
+2025-03-31 16:42:01.325 | INFO     | data_collection:download_pdb:109 - Downloaded 3d1y to data/raw/3d1y.pdb
+2025-03-31 16:42:05.133 | INFO     | data_collection:download_pdb:109 - Downloaded 3d20 to data/raw/3d20.pdb
+2025-03-31 16:42:09.039 | INFO     | data_collection:download_pdb:109 - Downloaded 4plz to data/raw/4plz.pdb
+2025-03-31 16:42:12.838 | INFO     | data_collection:download_pdb:109 - Downloaded 4qr6 to data/raw/4qr6.pdb
+2025-03-31 16:42:16.200 | INFO     | data_collection:download_pdb:109 - Downloaded 5bt3 to data/raw/5bt3.pdb
+2025-03-31 16:42:24.768 | INFO     | data_collection:download_pdb:109 - Downloaded 5etp to data/raw/5etp.pdb
+2025-03-31 16:42:28.014 | INFO     | data_collection:download_pdb:109 - Downloaded 5i86 to data/raw/5i86.pdb
+2025-03-31 16:42:28.772 | INFO     | data_collection:batch_download:179 - Progress: 90/100 (90.0%)
+2025-03-31 16:42:28.803 | INFO     | data_collection:batch_download:185 - Saved metadata for 90 structures
+2025-03-31 16:42:31.517 | INFO     | data_collection:download_pdb:109 - Downloaded 5j0d to data/raw/5j0d.pdb
+2025-03-31 16:42:35.174 | INFO     | data_collection:download_pdb:109 - Downloaded 6ddj to data/raw/6ddj.pdb
+2025-03-31 16:42:39.406 | INFO     | data_collection:download_pdb:109 - Downloaded 6nnr to data/raw/6nnr.pdb
+2025-03-31 16:42:43.493 | INFO     | data_collection:download_pdb:109 - Downloaded 6s14 to data/raw/6s14.pdb
+2025-03-31 16:42:46.939 | INFO     | data_collection:download_pdb:109 - Downloaded 6s1h to data/raw/6s1h.pdb
+2025-03-31 16:42:50.913 | INFO     | data_collection:download_pdb:109 - Downloaded 6sd7 to data/raw/6sd7.pdb
+2025-03-31 16:42:54.896 | INFO     | data_collection:download_pdb:109 - Downloaded 6xxt to data/raw/6xxt.pdb
+2025-03-31 16:42:58.279 | INFO     | data_collection:download_pdb:109 - Downloaded 6yqn to data/raw/6yqn.pdb
+2025-03-31 16:43:02.111 | INFO     | data_collection:download_pdb:109 - Downloaded 7bhs to data/raw/7bhs.pdb
+2025-03-31 16:43:06.129 | INFO     | data_collection:download_pdb:109 - Downloaded 7oyp to data/raw/7oyp.pdb
+2025-03-31 16:43:06.935 | INFO     | data_collection:batch_download:179 - Progress: 100/100 (100.0%)
+2025-03-31 16:43:06.961 | INFO     | data_collection:batch_download:185 - Saved metadata for 100 structures
+2025-03-31 16:43:07.464 | INFO     | data_collection:batch_download:189 - Batch download complete. Downloaded 100/100 files
+2025-03-31 16:43:07.482 | INFO     | data_collection:batch_download:195 - Metadata collection complete. Saved metadata for 100 structures
+2025-03-31 16:43:07.484 | INFO     | __main__:main:118 - Downloaded 100 files in 369.30 seconds
+2025-03-31 16:56:56.216 | INFO     | __main__:setup_logger:20 - Logger initialized
+2025-03-31 16:56:56.217 | INFO     | __main__:main:127 - Starting PDB processing
+2025-03-31 16:56:56.217 | INFO     | data_processing:__init__:26 - PDB Processor initialized. Output directory: data/processed
+2025-03-31 16:56:56.218 | INFO     | __main__:main:143 - Processing 100 PDB files
+2025-03-31 16:56:56.218 | INFO     | data_processing:batch_process:165 - Processing data/raw/1us0.pdb
+2025-03-31 16:56:56.341 | INFO     | data_processing:batch_process:165 - Processing data/raw/4lbs.pdb
+2025-03-31 16:56:56.441 | INFO     | data_processing:batch_process:165 - Processing data/raw/3bcj.pdb
+2025-03-31 16:56:56.607 | INFO     | data_processing:batch_process:165 - Processing data/raw/2qxw.pdb
+2025-03-31 16:56:56.710 | INFO     | data_processing:batch_process:165 - Processing data/raw/4lb3.pdb
+2025-03-31 16:56:56.793 | INFO     | data_processing:batch_process:165 - Processing data/raw/4lb4.pdb
+2025-03-31 16:56:56.870 | INFO     | data_processing:batch_process:165 - Processing data/raw/4lbr.pdb
+2025-03-31 16:56:57.024 | INFO     | data_processing:batch_process:165 - Processing data/raw/2i16.pdb
+2025-03-31 16:56:57.162 | INFO     | data_processing:batch_process:165 - Processing data/raw/2i17.pdb
+2025-03-31 16:56:57.296 | INFO     | data_processing:batch_process:165 - Processing data/raw/6tgu.pdb
+2025-03-31 16:56:57.460 | INFO     | data_processing:batch_process:165 - Processing data/raw/2hs1.pdb
+2025-03-31 16:56:57.521 | INFO     | data_processing:batch_process:165 - Processing data/raw/7g0z.pdb
+2025-03-31 16:56:57.593 | INFO     | data_processing:batch_process:165 - Processing data/raw/4lau.pdb
+2025-03-31 16:56:57.721 | INFO     | data_processing:batch_process:165 - Processing data/raw/2f01.pdb
+2025-03-31 16:56:57.774 | INFO     | data_processing:batch_process:165 - Processing data/raw/2pf8.pdb
+2025-03-31 16:56:57.879 | INFO     | data_processing:batch_process:165 - Processing data/raw/2pfh.pdb
+2025-03-31 16:56:57.979 | INFO     | data_processing:batch_process:165 - Processing data/raw/4laz.pdb
+2025-03-31 16:56:58.122 | INFO     | data_processing:batch_process:165 - Processing data/raw/5mnn.pdb
+2025-03-31 16:56:58.198 | INFO     | data_processing:batch_process:165 - Processing data/raw/4qxi.pdb
+2025-03-31 16:56:58.278 | INFO     | data_processing:batch_process:165 - Processing data/raw/2pev.pdb
+2025-03-31 16:56:58.439 | INFO     | data_processing:batch_process:165 - Processing data/raw/7wdj.pdb
+2025-03-31 16:56:58.475 | INFO     | data_processing:batch_process:165 - Processing data/raw/1pwm.pdb
+2025-03-31 16:56:58.583 | INFO     | data_processing:batch_process:165 - Processing data/raw/6te2.pdb
+2025-03-31 16:56:58.740 | INFO     | data_processing:batch_process:165 - Processing data/raw/7mbo.pdb
+2025-03-31 16:56:58.822 | INFO     | data_processing:batch_process:165 - Processing data/raw/3fx5.pdb
+2025-03-31 16:56:58.902 | INFO     | data_processing:batch_process:165 - Processing data/raw/3m4h.pdb
+2025-03-31 16:56:58.986 | INFO     | data_processing:batch_process:165 - Processing data/raw/4qb3.pdb
+2025-03-31 16:56:59.109 | INFO     | data_processing:batch_process:165 - Processing data/raw/6sbl.pdb
+2025-03-31 16:56:59.218 | INFO     | data_processing:batch_process:165 - Processing data/raw/6y1p.pdb
+2025-03-31 16:56:59.339 | INFO     | data_processing:batch_process:165 - Processing data/raw/8cnp.pdb
+2025-03-31 16:56:59.516 | INFO     | data_processing:batch_process:165 - Processing data/raw/6rh4.pdb
+2025-03-31 16:56:59.629 | INFO     | data_processing:batch_process:165 - Processing data/raw/1z8a.pdb
+2025-03-31 16:56:59.776 | INFO     | data_processing:batch_process:165 - Processing data/raw/3lz5.pdb
+2025-03-31 16:56:59.853 | INFO     | data_processing:batch_process:165 - Processing data/raw/3ry2.pdb
+2025-03-31 16:56:59.918 | INFO     | data_processing:batch_process:165 - Processing data/raw/6fo5.pdb
+2025-03-31 16:56:59.958 | INFO     | data_processing:batch_process:165 - Processing data/raw/6sbh.pdb
+2025-03-31 16:57:00.119 | INFO     | data_processing:batch_process:165 - Processing data/raw/6sbm.pdb
+2025-03-31 16:57:00.229 | INFO     | data_processing:batch_process:165 - Processing data/raw/6txp.pdb
+2025-03-31 16:57:00.357 | INFO     | data_processing:batch_process:165 - Processing data/raw/8b66.pdb
+2025-03-31 16:57:00.574 | INFO     | data_processing:batch_process:165 - Processing data/raw/6rkn.pdb
+2025-03-31 16:57:00.724 | INFO     | data_processing:batch_process:165 - Processing data/raw/1luq.pdb
+2025-03-31 16:57:00.888 | INFO     | data_processing:batch_process:165 - Processing data/raw/4yxi.pdb
+2025-03-31 16:57:00.957 | INFO     | data_processing:batch_process:165 - Processing data/raw/5mno.pdb
+2025-03-31 16:57:01.037 | INFO     | data_processing:batch_process:165 - Processing data/raw/6rfh.pdb
+2025-03-31 16:57:01.147 | INFO     | data_processing:batch_process:165 - Processing data/raw/2nmz.pdb
+2025-03-31 16:57:01.298 | INFO     | data_processing:batch_process:165 - Processing data/raw/6qlr.pdb
+2025-03-31 16:57:01.372 | INFO     | data_processing:batch_process:165 - Processing data/raw/7rwg.pdb
+2025-03-31 16:57:01.570 | INFO     | data_processing:batch_process:165 - Processing data/raw/5zio.pdb
+2025-03-31 16:57:01.637 | INFO     | data_processing:batch_process:165 - Processing data/raw/6t81.pdb
+2025-03-31 16:57:01.869 | INFO     | data_processing:batch_process:165 - Processing data/raw/7xfa.pdb
+2025-03-31 16:57:01.902 | INFO     | data_processing:batch_process:165 - Processing data/raw/7qyo.pdb
+2025-03-31 16:57:01.960 | INFO     | data_processing:batch_process:165 - Processing data/raw/3lep.pdb
+2025-03-31 16:57:02.072 | INFO     | data_processing:batch_process:165 - Processing data/raw/6td0.pdb
+2025-03-31 16:57:02.347 | INFO     | data_processing:batch_process:165 - Processing data/raw/6rig.pdb
+2025-03-31 16:57:02.507 | INFO     | data_processing:batch_process:165 - Processing data/raw/2agt.pdb
+2025-03-31 16:57:02.634 | INFO     | data_processing:batch_process:165 - Processing data/raw/2gg2.pdb
+2025-03-31 16:57:02.762 | INFO     | data_processing:batch_process:165 - Processing data/raw/2gh7.pdb
+2025-03-31 16:57:02.821 | INFO     | data_processing:batch_process:165 - Processing data/raw/2pzn.pdb
+2025-03-31 16:57:02.995 | INFO     | data_processing:batch_process:165 - Processing data/raw/3djk.pdb
+2025-03-31 16:57:03.096 | INFO     | data_processing:batch_process:165 - Processing data/raw/3ghr.pdb
+2025-03-31 16:57:03.372 | INFO     | data_processing:batch_process:165 - Processing data/raw/3ghs.pdb
+2025-03-31 16:57:03.539 | INFO     | data_processing:batch_process:165 - Processing data/raw/3u2c.pdb
+2025-03-31 16:57:03.645 | INFO     | data_processing:batch_process:165 - Processing data/raw/4x6h.pdb
+2025-03-31 16:57:03.705 | INFO     | data_processing:batch_process:165 - Processing data/raw/4xzh.pdb
+2025-03-31 16:57:03.902 | INFO     | data_processing:batch_process:165 - Processing data/raw/6qln.pdb
+2025-03-31 16:57:03.961 | INFO     | data_processing:batch_process:165 - Processing data/raw/6rl9.pdb
+2025-03-31 16:57:04.065 | INFO     | data_processing:batch_process:165 - Processing data/raw/6sfq.pdb
+2025-03-31 16:57:04.232 | INFO     | data_processing:batch_process:165 - Processing data/raw/4yx4.pdb
+2025-03-31 16:57:04.300 | INFO     | data_processing:batch_process:165 - Processing data/raw/5mnp.pdb
+2025-03-31 16:57:04.375 | INFO     | data_processing:batch_process:165 - Processing data/raw/6t7q.pdb
+2025-03-31 16:57:04.532 | INFO     | data_processing:batch_process:165 - Processing data/raw/4jfm.pdb
+2025-03-31 16:57:04.564 | INFO     | data_processing:batch_process:165 - Processing data/raw/6hr3.pdb
+2025-03-31 16:57:04.668 | INFO     | data_processing:batch_process:165 - Processing data/raw/3lz3.pdb
+2025-03-31 16:57:04.747 | INFO     | data_processing:batch_process:165 - Processing data/raw/3ndx.pdb
+2025-03-31 16:57:04.863 | INFO     | data_processing:batch_process:165 - Processing data/raw/5ll8.pdb
+2025-03-31 16:57:04.951 | INFO     | data_processing:batch_process:165 - Processing data/raw/8b3n.pdb
+2025-03-31 16:57:05.061 | INFO     | data_processing:batch_process:165 - Processing data/raw/6bqa.pdb
+2025-03-31 16:57:05.090 | INFO     | data_processing:batch_process:165 - Processing data/raw/1z3n.pdb
+2025-03-31 16:57:05.251 | INFO     | data_processing:batch_process:165 - Processing data/raw/6hmb.pdb
+2025-03-31 16:57:05.370 | INFO     | data_processing:batch_process:165 - Processing data/raw/5i40.pdb
+2025-03-31 16:57:05.406 | INFO     | data_processing:batch_process:165 - Processing data/raw/1t41.pdb
+2025-03-31 16:57:05.602 | INFO     | data_processing:batch_process:165 - Processing data/raw/2gg9.pdb
+2025-03-31 16:57:05.671 | INFO     | data_processing:batch_process:165 - Processing data/raw/3d1x.pdb
+2025-03-31 16:57:05.733 | INFO     | data_processing:batch_process:165 - Processing data/raw/3d1y.pdb
+2025-03-31 16:57:05.781 | INFO     | data_processing:batch_process:165 - Processing data/raw/3d20.pdb
+2025-03-31 16:57:05.842 | INFO     | data_processing:batch_process:165 - Processing data/raw/4plz.pdb
+2025-03-31 16:57:05.968 | INFO     | data_processing:batch_process:165 - Processing data/raw/4qr6.pdb
+2025-03-31 16:57:06.044 | INFO     | data_processing:batch_process:165 - Processing data/raw/5bt3.pdb
+2025-03-31 16:57:06.068 | INFO     | data_processing:batch_process:165 - Processing data/raw/5etp.pdb
+2025-03-31 16:57:06.126 | INFO     | data_processing:batch_process:165 - Processing data/raw/5i86.pdb
+2025-03-31 16:57:06.200 | INFO     | data_processing:batch_process:165 - Processing data/raw/5j0d.pdb
+2025-03-31 16:57:06.227 | INFO     | data_processing:batch_process:165 - Processing data/raw/6ddj.pdb
+2025-03-31 16:57:06.343 | INFO     | data_processing:batch_process:165 - Processing data/raw/6nnr.pdb
+2025-03-31 16:57:06.503 | INFO     | data_processing:batch_process:165 - Processing data/raw/6s14.pdb
+2025-03-31 16:57:06.663 | INFO     | data_processing:batch_process:165 - Processing data/raw/6s1h.pdb
+2025-03-31 16:57:06.777 | INFO     | data_processing:batch_process:165 - Processing data/raw/6sd7.pdb
+2025-03-31 16:57:06.919 | INFO     | data_processing:batch_process:165 - Processing data/raw/6xxt.pdb
+2025-03-31 16:57:06.985 | INFO     | data_processing:batch_process:165 - Processing data/raw/6yqn.pdb
+2025-03-31 16:57:07.023 | INFO     | data_processing:batch_process:165 - Processing data/raw/7bhs.pdb
+2025-03-31 16:57:07.109 | INFO     | data_processing:batch_process:165 - Processing data/raw/7oyp.pdb
+2025-03-31 16:57:07.249 | INFO     | data_processing:batch_process:173 - Saved processed data to data/processed/processed_structures.csv
+2025-03-31 16:57:07.250 | INFO     | __main__:main:150 - Processed 100 files in 11.03 seconds
+2025-03-31 16:57:07.253 | INFO     | __main__:main:151 - Found 453 ligands in total
+2025-03-31 16:57:19.310 | INFO     | __main__:setup_logger:20 - Logger initialized
+2025-03-31 16:57:19.311 | INFO     | __main__:main:155 - Starting enhanced structure categorization
+2025-03-31 16:57:19.311 | INFO     | categorization:__init__:26 - Structure Categorizer initialized. Data directory: data/processed
+2025-03-31 16:57:19.313 | INFO     | __main__:main:168 - Loaded metadata for 100 structures
+2025-03-31 16:57:19.328 | INFO     | categorization:load_processed_data:81 - Loaded 100 processed structures
+2025-03-31 16:57:19.329 | INFO     | __main__:main:187 - Categorizing all 100 processed structures
+2025-03-31 16:59:21.193 | INFO     | categorization:batch_enhance_structures:412 - Saved enhanced data to data/processed/enhanced_structures.csv
+2025-03-31 16:59:21.193 | INFO     | __main__:main:194 - Enhanced 100 structures in 121.86 seconds
+2025-03-31 16:59:21.199 | INFO     | __main__:main:208 - Protein family distribution:
+2025-03-31 16:59:21.200 | INFO     | __main__:main:210 -   oxidoreductase: 37 structures
+2025-03-31 16:59:21.200 | INFO     | __main__:main:210 -   kinase: 4 structures
+2025-03-31 16:59:21.200 | INFO     | __main__:main:210 -   transferase: 9 structures
+2025-03-31 16:59:21.200 | INFO     | __main__:main:210 -   protease: 16 structures
+2025-03-31 16:59:21.201 | INFO     | __main__:main:210 -   antibody: 1 structures
+2025-03-31 16:59:21.201 | INFO     | __main__:main:210 -   lyase: 17 structures
+2025-03-31 16:59:21.201 | INFO     | __main__:main:210 -   isomerase: 1 structures
+2025-03-31 16:59:40.870 | INFO     | __main__:setup_logger:20 - Logger initialized
+2025-03-31 16:59:40.871 | INFO     | __main__:main:214 - Initializing database schema
+2025-03-31 16:59:40.871 | INFO     | database.service:__init__:47 - Database service initialized with sqlite:///./data/docking_db.sqlite
+2025-03-31 16:59:40.897 | INFO     | database.service:create_tables:52 - Database tables created
+2025-03-31 16:59:40.898 | INFO     | __main__:main:217 - Database schema initialized
+2025-03-31 16:59:50.460 | INFO     | __main__:setup_logger:20 - Logger initialized
+2025-03-31 16:59:50.460 | INFO     | __main__:main:220 - Importing data from data/processed/enhanced_structures.csv into database...
+2025-03-31 16:59:50.461 | INFO     | database.service:__init__:47 - Database service initialized with sqlite:///./data/docking_db.sqlite
+2025-03-31 16:59:50.495 | INFO     | database.service:import_enhanced_structures:77 - Loaded 100 structures from data/processed/enhanced_structures.csv
+2025-03-31 16:59:54.174 | INFO     | database.service:import_enhanced_structures:371 - Database import complete: 100 new proteins, 0 updated
+2025-03-31 16:59:54.175 | INFO     | __main__:main:224 - Data import completed successfully
+2025-03-31 17:15:36.530 | INFO     | __main__:setup_logger:20 - Logger initialized
+2025-03-31 17:15:36.530 | INFO     | __main__:main:214 - Initializing database schema
+2025-03-31 17:15:36.530 | INFO     | database.service:__init__:47 - Database service initialized with sqlite:///./data/docking_db.sqlite
+2025-03-31 17:15:36.570 | INFO     | database.service:create_tables:52 - Database tables created
+2025-03-31 17:15:36.570 | INFO     | __main__:main:217 - Database schema initialized
+2025-03-31 17:16:06.429 | INFO     | __main__:setup_logger:20 - Logger initialized
+2025-03-31 17:16:06.429 | INFO     | __main__:main:220 - Importing data from data/processed/enhanced_structures.csv into database...
+2025-03-31 17:16:06.430 | INFO     | database.service:__init__:47 - Database service initialized with sqlite:///./data/docking_db.sqlite
+2025-03-31 17:16:06.460 | INFO     | database.service:import_enhanced_structures:77 - Loaded 100 structures from data/processed/enhanced_structures.csv
+2025-03-31 17:16:10.308 | INFO     | database.service:import_enhanced_structures:371 - Database import complete: 100 new proteins, 0 updated
+2025-03-31 17:16:10.309 | INFO     | __main__:main:224 - Data import completed successfully

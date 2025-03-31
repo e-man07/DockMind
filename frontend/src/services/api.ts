@@ -13,6 +13,11 @@ export interface ChainData {
   // Add other chain-specific properties as needed
 }
 
+export interface IPFSResponse {
+  ipfs_hash: string;
+}
+
+
 export interface Protein {
   id: number;
   pdb_id: string;
@@ -143,6 +148,15 @@ export async function getDatabaseStats(): Promise<DatabaseStats> {
   const response = await fetch(`${API_BASE_URL}/stats`);
   if (!response.ok) {
     throw new Error(`Failed to fetch database stats: ${response.statusText}`);
+  }
+  return response.json();
+}
+
+// Fetch IPFS hash by protein PDB ID
+export async function getIPFSHashByProteinId(pdbId: string): Promise<IPFSResponse> {
+  const response = await fetch(`${API_BASE_URL}/proteins/${pdbId}/ipfs`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch IPFS hash for protein ${pdbId}: ${response.statusText}`);
   }
   return response.json();
 }

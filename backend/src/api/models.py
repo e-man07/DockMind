@@ -114,6 +114,14 @@ class ProteinWithLigandsResponse(BaseModel):
     protein: Dict[str, Any]
     ligands: List[Dict[str, Any]]
 
+class IPFSHashResponse(BaseModel):
+    """Response model for IPFS hash data"""
+    hash: str
+    protein_id: str
+    
+    class Config:
+        from_attributes = True
+
 # Request models
 class UploadPDBRequest(BaseModel):
     """Request model for PDB file uploads"""

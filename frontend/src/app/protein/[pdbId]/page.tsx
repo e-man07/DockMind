@@ -1,6 +1,12 @@
 "use client";
 
-import { Ligand, Protein, getProteinById } from "@/services/api";
+import {
+  Ligand,
+  Protein,
+  getProteinById,
+  getIPFSHashByProteinId,
+  IPFSResponse,
+} from "@/services/api";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -10,6 +16,7 @@ export default function ProteinDetails() {
   const router = useRouter();
   const [protein, setProtein] = useState<Protein | null>(null);
   const [ligands, setLigands] = useState<Ligand[]>([]);
+  const [ipfsHash, setIpfsHash] = useState<IPFSResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -19,9 +26,14 @@ export default function ProteinDetails() {
 
       try {
         setLoading(true);
-        const data = await getProteinById(pdbId as string);
-        setProtein(data.protein);
-        setLigands(data.ligands);
+        const [proteinData, ipfsData] = await Promise.all([
+          getProteinById(pdbId as string),
+          getIPFSHashByProteinId(pdbId as string).catch(() => null),
+        ]);
+
+        setProtein(proteinData.protein);
+        setLigands(proteinData.ligands);
+        setIpfsHash(ipfsData || null);
         setError(null);
       } catch (err) {
         console.error("Error fetching protein details:", err);
@@ -208,6 +220,69 @@ export default function ProteinDetails() {
                           : "UNKNOWN"}
                       </span>
                     </p>
+                  </div>
+
+                  <div className="border-b border-slate-700 pb-2">
+                    <p className="font-medium text-gray-400">IPFS Storage</p>
+                    {ipfsHash ? (
+                      <div className="flex items-center">
+                        <span
+                          className="bg-emerald-900/30 text-emerald-300 px-2 py-1 text-xs font-mono rounded border border-emerald-800 truncate"
+                          title={ipfsHash.ipfs_hash}
+                        >
+                          {ipfsHash.ipfs_hash.substring(0, 7)}...
+                          {ipfsHash.ipfs_hash.substring(ipfsHash.ipfs_hash.length - 7)}
+                        </span>
+                        <button
+                          onClick={() =>
+                            navigator.clipboard.writeText(ipfsHash.ipfs_hash)
+                          }
+                          className="ml-2 text-gray-400 hover:text-blue-400 transition-colors"
+                          title="Copy IPFS hash"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                            />
+                          </svg>
+                        </button>
+                        <a
+                          href={`https://ipfs.io/ipfs/${ipfsHash.ipfs_hash}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="ml-2 text-gray-400 hover:text-blue-400 transition-colors"
+                          title="View on IPFS"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                          </svg>
+                        </a>
+                      </div>
+                    ) : (
+                      <p className="text-gray-500 italic text-sm">
+                        Not available
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
