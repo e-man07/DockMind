@@ -1,139 +1,64 @@
-# Roadmap
+# AI-Powered Docking Data Management Agent
 
-### Phase 1 (Completed)
+![Solana](https://img.shields.io/badge/Solana-3E484F?style=for-the-badge&logo=solana&logoColor=white)
+![IPFS](https://img.shields.io/badge/IPFS-65C2CB?style=for-the-badge&logo=ipfs&logoColor=white)
+![AI](https://img.shields.io/badge/AI-FF4F64?style=for-the-badge&logo=openai&logoColor=white)
 
-- Data collection from PDB
-- Initial structure processing
+An AI-driven system for managing, categorizing, and securely storing docking simulation data using **Solana blockchain** and **decentralized storage**.
 
-### Phase 2  (Almost Done)
+## 🚀 Objective
+Efficiently organize and manage docking simulation data (from commercial & open-source tools) to accelerate research in small-molecule inhibitors for target proteins.
 
-- Enhance data categorization
-- Add more advanced property calculations
-- Design database schema
+## 🔑 Key Features
 
-### Phase 3
+### 🤖 Automated Data Categorization & Tagging
+- **Protein Targets**: Group by targeted proteins.
+- **Binding Efficacy**: Categorize by affinity scores.
+- **Molecular Properties**: Identify physicochemical & ADMET properties.
 
-- Develop result parsers
-- Implement Solana blockchain storage
+### ⛓️ Blockchain-Based Storage (Solana)
+- **Immutable Records**: Smart contracts ensure data integrity.
+- **Decentralized Storage**: IPFS/Arweave for files + Solana references.
+- **Full Auditability**: Transparent data provenance.
 
-### Phase 4
+### 🔍 Researcher-Friendly Interface
+- **Search & Filter**: By protein, efficacy, or molecular traits.
+- **Interactive Visualizations**:
+  - Docking score distributions.
+  - Molecular interaction heatmaps.
+  - 3D docking previews.
+- **Export/Integration**: Seamless ML model integration.
 
-- Build user interface
-- Deploy search and retrieval system
-- Add visualization capabilities
+## 🛠️ Technical Workflow
+1. **Data Ingestion**: Upload docking results → AI categorization.
+2. **Blockchain Recording**: 
+   - Metadata hashed on Solana.
+   - Files stored on IPFS/Arweave.
+3. **User Access**: Intuitive UI + real-time smart contract queries.
 
-## Installation
+## 🌟 Why Eliza Framework on Solana?
+- **Scalability**: Handles high-throughput docking data.
+- **Security**: Encrypted storage + access control.
+- **Speed**: Solana’s high TPS for fast queries.
 
-1. Clone the repository:
+## 📈 Future Enhancements
+- **AI Docking Predictions**: ML-based efficacy forecasts.
+- **Decentralized Marketplace**: Secure data exchange.
+- **Automated Reports**: Paper-ready docking insights.
 
-   ```bash
-   git clone {repository_url}
-   cd {repository_name}/backend
-   ```
+## 📚 References
+- [Solana Documentation](https://docs.solana.com/)
+- [Eliza Framework](https://eliza.framework)
+- [NeuraViva Research Scope](#) *(add link)*
 
-2. Create and activate a virtual environment:
+---
 
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   ```
-
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## Usage
-
-As of now the pipeline is run through a command-line interface with various options:
-
-### Data Collection
-
-Download protein structures from PDB:
-
+## 🛠️ Installation & Usage
+*(Add setup instructions here)*  
 ```bash
-python src/main.py --download --resolution 2.5 --limit 10 --format pdb
+git clone https://github.com/your-repo/ai-docking-agent.git
+cd ai-docking-agent
+npm install
+solana config set --url devnet
 ```
 
-Options:
-
-- `--resolution`: Maximum resolution cutoff (default: 2.5Å) (not necessary option)
-- `--limit`: Maximum number of structures to download
-- `--format`: File format to download ('pdb' or 'cif') (not necessary option)
-
-### Data Processing
-
-Process downloaded PDB files:
-
-```bash
-python src/main.py --process
-```
-
-This extracts protein chains, ligands, and other structural information. Creates a csv file in `data/processed/` directory.
-
-### Structure Categorization
-
-Enhance processed structures with additional categorization:
-
-```bash
-python backend/src/main.py --categorize --metadata-file path/to/metadata.json
-```
-
-Options:
-
-- `--metadata-file`: Path to JSON file containing additional metadata
-- `--pdb-ids`: Specific PDB IDs to process (e.g., `--pdb-ids 1us0 4lbs 3bcj`)
-
-### Database Operations
-
-Initialize the database:
-
-```bash
-python backend/src/main.py --init-db
-```
-
-Import processed data into the database:
-
-```bash
-python backend/src/main.py --import-db
-```
-
-### Complete Pipeline Example
-
-Run the complete pipeline:
-
-```bash
-python backend/src/main.py --download --process --categorize --init-db --import-db --resolution 2.5 --limit 50
-```
-
-## Data Organization
-
-The project organizes data as follows:
-
-- `data/raw/`: Downloaded PDB files
-- `data/processed/`: Processed and categorized data
-- `logs/`: Application logs
-
-## Database Schema
-
-The database stores the following entities:
-
-- Proteins: Basic protein information
-- Ligands: Ligand properties and binding site information
-- Protein Categories: Classification of proteins
-- Data Integrity Records: Hashes for data integrity verification
-
-## Development
-
-### Project Structure
-
-```
-backend/
-├── requirements.txt
-├── src/
-│   ├── main.py
-│   ├── data_collection/
-│   ├── data_processing/
-│   ├── categorization/
-│   ├── database/
-```
