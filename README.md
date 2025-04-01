@@ -36,29 +36,41 @@ Efficiently organize and manage docking simulation data (from commercial & open-
    - Files stored on IPFS/Arweave.
 3. **User Access**: Intuitive UI + real-time smart contract queries.
 
-## 🌟 Why Eliza Framework on Solana?
-- **Scalability**: Handles high-throughput docking data.
-- **Security**: Encrypted storage + access control.
-- **Speed**: Solana’s high TPS for fast queries.
-
-## 📈 Future Enhancements
-- **AI Docking Predictions**: ML-based efficacy forecasts.
-- **Decentralized Marketplace**: Secure data exchange.
-- **Automated Reports**: Paper-ready docking insights.
-
-## 📚 References
-- [Solana Documentation](https://docs.solana.com/)
-- [Eliza Framework](https://eliza.framework)
-- [NeuraViva Research Scope](#) *(add link)*
-
----
 
 ## 🛠️ Installation & Usage
-*(Add setup instructions here)*  
-```bash
-git clone https://github.com/your-repo/ai-docking-agent.git
-cd ai-docking-agent
-npm install
-solana config set --url devnet
-```
 
+1. Clone the repository:
+   ```bash
+   git clone {repository_url}
+   cd {repository_name}
+   ```
+
+2. Create and activate a virtual environment (Terminal 1):
+
+   ```bash
+   cd backend
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Run the backend server:
+   ```bash
+   python src/run_api.py
+   ```
+
+5. Setup the frontend (Terminal 2):
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+6. Access the application:
+   ```bash
+   Open your browser and navigate to http://localhost:3000.
+   ```
