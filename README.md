@@ -43,8 +43,8 @@ Efficiently organize and manage docking simulation data (from commercial & open-
 
 1. Clone the repository:
    ```bash
-   git clone {https://github.com/e-man07/DockMind}
-   cd {DockMind}
+   git clone https://github.com/e-man07/DockMind
+   cd DockMind
    ```
 
 2. Create and activate a virtual environment (Terminal 1):
