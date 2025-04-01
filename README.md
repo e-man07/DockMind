@@ -6,6 +6,8 @@
 
 An AI-driven system for managing, categorizing, and securely storing docking simulation data using **Solana blockchain** and **decentralized storage**.
 
+https://github.com/user-attachments/assets/0cc5225e-484d-43a0-9854-c067d2b1ab95
+
 ## 🚀 Objective
 Efficiently organize and manage docking simulation data (from commercial & open-source tools) to accelerate research in small-molecule inhibitors for target proteins.
 
