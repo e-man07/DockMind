@@ -1,4 +1,4 @@
-# AI-Powered Docking Data Management Agent
+# DockMind: AI-Powered Docking Data Management Agent
 
 ![Solana](https://img.shields.io/badge/Solana-3E484F?style=for-the-badge&logo=solana&logoColor=white)
 ![IPFS](https://img.shields.io/badge/IPFS-65C2CB?style=for-the-badge&logo=ipfs&logoColor=white)
@@ -43,8 +43,8 @@ Efficiently organize and manage docking simulation data (from commercial & open-
 
 1. Clone the repository:
    ```bash
-   git clone {repository_url}
-   cd {repository_name}
+   git clone {https://github.com/e-man07/DockMind}
+   cd {DockMind}
    ```
 
 2. Create and activate a virtual environment (Terminal 1):
